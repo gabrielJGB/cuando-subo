@@ -1,0 +1,12 @@
+{
+    "name": "Cuando llega?",
+    "short_name": "Cuando llega?",
+    "start_url": "index.html",
+    "scope": "./",
+    "icons": [
+   
+    ],
+    "theme_color": "#29573d",
+    "background_color": "#333",
+    "display": "standalone"
+  }

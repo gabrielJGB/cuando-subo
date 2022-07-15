@@ -1,0 +1,103 @@
+{
+    "status": "ok",
+    "data": [{
+        "interno": "101",
+        "angle": "314",
+        "dt_server": "2022-07-09 00:12:09",
+        "dt_tracker": "2022-07-09 00:11:58",
+        "icon": "img\/markers\/objects\/land-truck.svg",
+        "imei": "868926038084205",
+        "lat": "-38.73352",
+        "lng": "-62.25033",
+        "name": "V - 101\t",
+        "direccion": "vuelta"
+    }, {
+        "interno": "102",
+        "angle": "334",
+        "dt_server": "2022-07-08 23:20:40",
+        "dt_tracker": "2022-07-08 23:13:44",
+        "icon": "data\/user\/objects\/649_d187130734e2e017a3ef0df957ed4cef.svg",
+        "imei": "868926038078496",
+        "lat": "-38.68671",
+        "lng": "-62.22198",
+        "name": "BOXER - OIU 117",
+        "direccion": "ida"
+    }, {
+        "interno": "105",
+        "angle": "346",
+        "dt_server": "2022-07-09 00:11:47",
+        "dt_tracker": "2022-07-09 00:11:38",
+        "icon": "img\/markers\/objects\/land-truck.svg",
+        "imei": "868926038088453",
+        "lat": "-38.79562",
+        "lng": "-62.11163",
+        "name": "V - 105\t",
+        "direccion": "vuelta"
+    }, {
+        "interno": "110",
+        "angle": "34",
+        "dt_server": "2022-07-09 00:09:32",
+        "dt_tracker": "2022-07-09 00:09:26",
+        "icon": "img\/markers\/objects\/land-truck.svg",
+        "imei": "868926038077563",
+        "lat": "-38.74753",
+        "lng": "-62.19296",
+        "name": "V - 110\t",
+        "direccion": "ida"
+    }, {
+        "interno": "113",
+        "angle": "104",
+        "dt_server": "2022-07-09 00:04:35",
+        "dt_tracker": "2022-07-09 00:04:28",
+        "icon": "img\/markers\/objects\/land-truck.svg",
+        "imei": "866795034360147",
+        "lat": "-38.75122",
+        "lng": "-62.19393",
+        "name": "V - 113\t",
+        "direccion": "ida"
+    }, {
+        "interno": "114",
+        "angle": "0",
+        "dt_server": "2022-07-08 23:11:12",
+        "dt_tracker": "2022-07-08 23:08:54",
+        "icon": "img\/markers\/objects\/land-truck.svg",
+        "imei": "868926038077803",
+        "lat": "-38.68869",
+        "lng": "-62.33651",
+        "name": "CARGO NQD 998",
+        "direccion": "ida"
+    }, {
+        "interno": "115",
+        "angle": "168",
+        "dt_server": "2022-07-09 00:06:51",
+        "dt_tracker": "2022-07-09 00:06:46",
+        "icon": "img\/markers\/objects\/land-truck.svg",
+        "imei": "868926038087570",
+        "lat": "-38.86469",
+        "lng": "-62.08199",
+        "name": "V - 115\t",
+        "direccion": "ida"
+    }, {
+        "interno": "116",
+        "angle": "80",
+        "dt_server": "2022-07-09 00:06:35",
+        "dt_tracker": "2022-07-09 00:06:30",
+        "icon": "img\/markers\/objects\/land-truck.svg",
+        "imei": "868926037979496",
+        "lat": "-38.89438",
+        "lng": "-63.13866",
+        "name": "V - 116\t",
+        "direccion": "ida"
+    }, {
+        "interno": "117",
+        "angle": "260",
+        "dt_server": "2022-07-09 00:12:23",
+        "dt_tracker": "2022-07-09 00:12:18",
+        "icon": "img\/markers\/objects\/land-truck.svg",
+        "imei": "868926038084023",
+        "lat": "-38.879",
+        "lng": "-62.07798",
+        "name": "V - 117\t",
+        "direccion": "vuelta"
+    }]
+}
