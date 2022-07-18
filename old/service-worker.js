@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["index.html","c97d93293a196d09c73b1b1d7f227d2f"],["main.js","d41d8cd98f00b204e9800998ecf8427e"],["manifest.json","dad0a0d054e151938f4962ee2c0d7321"],["old/PA-BA-oj.json","1b065dd72df7b0e6535cf08f77c35409"],["old/README.md","5108de52ac3e46b1814f8b82496e4ac7"],["old/archivo1.json","62c4ed1b351253ed4eeead44c9529767"],["old/geoj.json","4a8d9081a9c22d150c16b41ad6143918"],["old/geojsonors-route_1657599094046.json","c90bc995d820f3334f3d2fa495e1100d"],["old/gj-BB-PA.json","8ef6db737aae846644b3943dba9372cf"],["old/gj-PA-BB.json","dd5d1472b863e916813ded0b1a19b5c6"],["old/horarios.txt","f4c199b9d8c87ba77aa4fa3903a0408c"],["old/main.js","0709ccbbba191074cea220bea63c0d5f"],["old/map.js","0c54fe31071e89ea656454ac48f26223"],["old/oj-BB-PA.json","c6e60b6308d219d46bab80f2b6754394"],["old/ors-route_1657596845449.json","373d501c9566c00815a2120d955c403d"],["old/ors1.json","67daf66a4bec131c7e21fdef893f57b6"],["old/paradas.js","8e29d705cd609ebf10e038a2c3d0d334"],["old/result.json","3a578e9a5ce8eb9eeb9d1dcd134a4f0e"],["old/segments.js","bc803efda37cef563237ce9fdc373304"],["old/service-worker.js","86ef7f486ddd1febb4ea573eb06eb29d"],["old/test.json","14d8606e19836311101ce3b632238488"],["old/test_reduced.json","3159b0b79e3ebbb627a16ab573ba0a38"],["ui.js","8f9db60fb15d599fbf3f319ccf6f03a0"]];
+var precacheConfig = [["index.html","6d77c4c26b3c26518c41067ac46c040e"],["manifest.json","f7b7a238ea22ea428561d3da4d7b8970"],["script.js","f179d49cc2bc54d4ae68b16f9d8cab8d"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 

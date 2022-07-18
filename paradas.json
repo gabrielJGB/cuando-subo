@@ -1,0 +1,654 @@
+{
+
+    "paradas_ida": [
+
+        {
+            "nombre": "Parque de Mayo",
+            "coords": {
+            	"lat":-62.26874,
+            	"lng":-38.7001
+            }
+        }
+        , {
+            "nombre": "Uns - Av. Alem",
+            "coords": {
+            	"lat":-62.2704 ,
+            	"lng":-38.7024}
+        }, {
+            "nombre": "Alem 630",
+            "coords": {
+            	"lat":-62.26507 ,
+            	"lng":-38.7083}
+        }, {
+            "nombre": "19  de Mayo 284",
+            "coords": {
+            	"lat":-62.26600 ,
+            	"lng":-38.7128}
+        }, {
+            "nombre": "Estomba 287",
+            "coords": {
+            	"lat":-62.26934 ,
+            	"lng":-38.7160}
+        }, {
+            "nombre": "Banco Nacion",
+            "coords": {
+            	"lat":-62.26723 ,
+            	"lng":-38.7176}
+        }, {
+            "nombre": "Chiclana 155",
+            "coords": {
+            	"lat":-62.26465 ,
+            	"lng":-38.7195}
+        }, {
+            "nombre": "Chiclana 599",
+            "coords": {
+            	"lat":-62.25985 ,
+            	"lng":-38.7232}
+        }, {
+            "nombre": "Chiclana 825",
+            "coords": {
+            	"lat":-62.25723 ,
+            	"lng":-38.7253}
+        }, {
+            "nombre": "Montevideo 81",
+            "coords": {
+            	"lat":-62.25459 ,
+            	"lng":-38.7292}
+        }, {
+            "nombre": "Supermercado Vea",
+            "coords": {
+            	"lat":-62.25287 ,
+            	"lng":-38.7306}
+        }, {
+            "nombre": "Matheu 91",
+            "coords": {
+            	"lat":-62.24455 ,
+            	"lng":-38.7342}
+        }, {
+            "nombre": "Maipú 2182",
+            "coords": {
+            	"lat":-62.23428 ,
+            	"lng":-38.7423}
+        }, {
+            "nombre": "Punta Alta 485",
+            "coords": {
+            	"lat":-62.23753 ,
+            	"lng":-38.7336}
+        }, {
+            "nombre": "Punta Alta 680",
+            "coords": {
+            	"lat":-62.23551 ,
+            	"lng":-38.7320}
+        }, {
+            "nombre": "Necochea 757",
+            "coords": {
+            	"lat":-62.23376 ,
+            	"lng":-38.7322}
+        }, {
+            "nombre": "Necochea 1000",
+            "coords": {
+            	"lat":-62.23149 ,
+            	"lng":-38.7304}
+        }, {
+            "nombre": "Hospital Penna",
+            "coords": {
+            	"lat":-62.2281 ,
+            	"lng":-38.7291}
+        }, {
+            "nombre": "Av. Lainez 2649",
+            "coords": {
+            	"lat":-62.22503 ,
+            	"lng":-38.7314}
+        }, {
+            "nombre": "Av. Lainez 2895",
+            "coords": {
+            	"lat":-62.22275 ,
+            	"lng":-38.7331}
+        }, {
+            "nombre": "Rincón 3333",
+            "coords": {
+            	"lat":-62.21876 ,
+            	"lng":-38.7375}
+        }, {
+            "nombre": "Rincón 3520",
+            "coords": {
+            	"lat":-62.2168 ,
+            	"lng":-38.7391}
+        }, {
+            "nombre": "Rincón 3715",
+            "coords": {
+            	"lat":-62.21496 ,
+            	"lng":-38.7408}
+        }, {
+            "nombre": "Rincón 3897",
+            "coords": {
+            	"lat":-62.21304 ,
+            	"lng":-38.7422}
+        }, {
+            "nombre": "Coca-Cola",
+            "coords": {
+            	"lat":-62.20783 ,
+            	"lng":-38.7460}
+        }, {
+            "nombre": "Rafael Obligado 4800",
+            "coords": {
+            	"lat":-62.19662 ,
+            	"lng":-38.7506}
+        }, {
+            "nombre": "Rafael Obligado 5100",
+            "coords": {
+            	"lat":-62.1887 ,
+            	"lng":-38.7522}
+        }, {
+            "nombre": "Rafael Obligado 5800",
+            "coords": {
+            	"lat":-62.17823 ,
+            	"lng":-38.7544}
+        }, {
+            "nombre": "Rafael Obligado 6000",
+            "coords": {
+            	"lat":-62.17471 ,
+            	"lng":-38.7551}
+        }, {
+            "nombre": "Rotonda Punta Blanca",
+            "coords": {
+            	"lat":-62.17502 ,
+            	"lng":-38.7568}
+        }, {
+            "nombre": "Portal  del Este",
+            "coords": {
+            	"lat":-62.16648 ,
+            	"lng":-38.7629}
+        }, {
+            "nombre": "Agromax",
+            "coords": {
+            	"lat":-62.14762 ,
+            	"lng":-38.7697}
+        }, {
+            "nombre": "Pago Chico",
+            "coords": {
+            	"lat":-62.11536 ,
+            	"lng":-38.7814}
+        }, {
+            "nombre": "Barrio El Porvenir",
+            "coords": {
+            	"lat":-62.11338 ,
+            	"lng":-38.7893}
+        }, {
+            "nombre": "Villa Arias 1°",
+            "coords": {
+            	"lat":-62.10798 ,
+            	"lng":-38.8080}
+        }, {
+            "nombre": "Villa Arias 2°",
+            "coords": {
+            	"lat":-62.10723 ,
+            	"lng":-38.81066}
+        }, {
+            "nombre": "Villa Arias 3°",
+            "coords": {
+            	"lat":-62.10651 ,
+            	"lng":-38.81308}
+        }, {
+            "nombre": "Villa  del Mar",
+            "coords": {
+            	"lat":-62.09411 ,
+            	"lng":-38.84261}
+        }, {
+            "nombre": "Rio Juramento y Roca",
+            "coords": {
+            	"lat":-62.08976 ,
+            	"lng":-38.84682}
+        }, {
+            "nombre": "Av. Paso 3800",
+            "coords": {
+            	"lat":-62.08671 ,
+            	"lng":-38.8472}
+        }, {
+            "nombre": "Av. Paso 3600",
+            "coords": {
+            	"lat":-62.08624 ,
+            	"lng":-38.84903}
+        }, {
+            "nombre": "Av. Paso y Rio Bermejo",
+            "coords": {
+            	"lat":-62.08573 ,
+            	"lng":-38.8509}
+        }, {
+            "nombre": "Av. Paso 3000",
+            "coords": {
+            	"lat":-62.08472 ,
+            	"lng":-38.85458}
+        }, {
+            "nombre": "Av. Paso 2800",
+            "coords": {
+            	"lat":-62.08421 ,
+            	"lng":-38.85651}
+        }, {
+            "nombre": "Av. Paso 2600",
+            "coords": {
+            	"lat":-62.08404 ,
+            	"lng":-38.85709}
+        }, {
+            "nombre": "Av. Paso 2400",
+            "coords": {
+            	"lat":-62.0833 ,
+            	"lng":-38.86003}
+        }, {
+            "nombre": "Av. Paso 2100",
+            "coords": {
+            	"lat":-62.08245 ,
+            	"lng":-38.86289}
+        }, {
+            "nombre": "Av. Paso 1900",
+            "coords": {
+            	"lat":-62.08198 ,
+            	"lng":-38.86475}
+        }, {
+            "nombre": "Av. Paso 1600",
+            "coords": {
+            	"lat":-62.08125 ,
+            	"lng":-38.86737}
+        }, {
+            "nombre": "Av. Paso y Quintana",
+            "coords": {
+            	"lat":-62.08073 ,
+            	"lng":-38.86941}
+        }, {
+            "nombre": "Av. Paso y 11 de Sept",
+            "coords": {
+            	"lat":-62.08011 ,
+            	"lng":-38.87166}
+        }, {
+            "nombre": "Av. Paso 1000",
+            "coords": {
+            	"lat":-62.07948 ,
+            	"lng":-38.8738}
+        }, {
+            "nombre": "Av. Paso 800",
+            "coords": {
+            	"lat":-62.07875 ,
+            	"lng":-38.87655}
+        }, {
+            "nombre": "Pellegrini y Roca",
+            "coords": {
+            	"lat":-62.08146 ,
+            	"lng":-38.8771}
+        }, {
+            "nombre": "Pellegrini y Colon",
+            "coords": {
+            	"lat":-62.08458 ,
+            	"lng":-38.87765}
+        }, {
+            "nombre": "Colon y Rivadavia",
+            "coords": {
+            	"lat":-62.0836 ,
+            	"lng":-38.88126}
+        }, {
+            "nombre": "Colon y Urquiza",
+            "coords": {
+            	"lat":-62.08279 ,
+            	"lng":-38.88388}
+        }, {
+            "nombre": "Urquiza 250",
+            "coords": {
+            	"lat":-62.07906 ,
+            	"lng":-38.88329}
+        }, {
+            "nombre": "Urquiza 415",
+            "coords": {
+            	"lat":-62.07679 ,
+            	"lng":-38.88293}
+        }, {
+            "nombre": "Irigoyen y Brown",
+            "coords": {
+            	"lat":-62.07565 ,
+            	"lng":-38.88100}
+        }, {
+            "nombre": "Luiggi y Espora",
+            "coords": {
+            	"lat":-62.0736 ,
+            	"lng":-38.87711}
+        }, {
+            "nombre": "Terminal Punta Alta",
+            "coords": {
+            	"lat":-62.07133 ,
+            	"lng":-38.87674}
+        }
+    ],
+
+
+    "paradas_vuelta": [
+
+
+        {
+            "nombre": "Terminal Punta Alta",
+            "coords": {
+            	"lat":-62.07133 ,
+            	"lng":-38.87674}
+        }, {
+            "nombre": "Mitre 440",
+            "coords": {
+            	"lat":-62.07709 ,
+            	"lng":-38.87893}
+        }, {
+            "nombre": "Mitre 260",
+            "coords": {
+            	"lat":-62.08017 ,
+            	"lng":-38.87942}
+        }, {
+            "nombre": "Mitre 126",
+            "coords": {
+            	"lat":-62.08187 ,
+            	"lng":-38.87968}
+        }, {
+            "nombre": "Mitre y Humberto",
+            "coords": {
+            	"lat":-62.08222 ,
+            	"lng":-38.87973}
+        }, {
+            "nombre": "Humberto y Pellegrini",
+            "coords": {
+            	"lat":-62.08301 ,
+            	"lng":-38.87746}
+        }, {
+            "nombre": "Humberto y 9 de Julio",
+            "coords": {
+            	"lat":-62.08368 ,
+            	"lng":-38.87485}
+        }, {
+            "nombre": "Humberto y 11 de Sept",
+            "coords": {
+            	"lat":-62.08428 ,
+            	"lng":-38.87254}
+        }, {
+            "nombre": "Humberto y Patagones",
+            "coords": {
+            	"lat":-62.08458 ,
+            	"lng":-38.87140}
+        }, {
+            "nombre": "Patagones y Roca",
+            "coords": {
+            	"lat":-62.08328 ,
+            	"lng":-38.87109}
+        }, {
+            "nombre": "Patagones y Brown",
+            "coords": {
+            	"lat":-62.07872 ,
+            	"lng":-38.87034}
+        }, {
+            "nombre": "Brown y Quintana",
+            "coords": {
+            	"lat":-62.07881 ,
+            	"lng":-38.86934}
+        }, {
+            "nombre": "Av. Paso y Quintana",
+            "coords": {
+            	"lat":-62.08055 ,
+            	"lng":-38.86950}
+        }, {
+            "nombre": "Av. Paso 1600",
+            "coords": {
+            	"lat":-62.08125 ,
+            	"lng":-38.86737}
+        }, {
+            "nombre": "Av. Paso 1900",
+            "coords": {
+            	"lat":-62.08198 ,
+            	"lng":-38.86475}
+        }, {
+            "nombre": "Av. Paso 2100",
+            "coords": {
+            	"lat":-62.08245 ,
+            	"lng":-38.86289}
+        }, {
+            "nombre": "Av. Paso 2400",
+            "coords": {
+            	"lat":-62.0833 ,
+            	"lng":-38.86003}
+        }, {
+            "nombre": "Av. Paso 2600",
+            "coords": {
+            	"lat":-62.08404 ,
+            	"lng":-38.85709}
+        }, {
+            "nombre": "Av. Paso 2800",
+            "coords": {
+            	"lat":-62.08421 ,
+            	"lng":-38.85651}
+        }, {
+            "nombre": "Av. Paso 3000",
+            "coords": {
+            	"lat":-62.08472 ,
+            	"lng":-38.85458}
+        }, {
+            "nombre": "Av. Paso 3200",
+            "coords": {
+            	"lat":-62.08526 ,
+            	"lng":-38.85267}
+        }, {
+            "nombre": "Av. Paso y Rio Bermejo",
+            "coords": {
+            	"lat":-62.08573 ,
+            	"lng":-38.8509}
+        }, {
+            "nombre": "Av. Paso 3600",
+            "coords": {
+            	"lat":-62.08624 ,
+            	"lng":-38.84903}
+        }, {
+            "nombre": "Av. Paso 3800",
+            "coords": {
+            	"lat":-62.08671 ,
+            	"lng":-38.8472}
+        }, {
+            "nombre": "Río Juramento y Roca",
+            "coords": {
+            	"lat":-62.08976 ,
+            	"lng":-38.84682}
+        }, {
+            "nombre": "Villa  del Mar",
+            "coords": {
+            	"lat":-62.09411 ,
+            	"lng":-38.84261}
+        }, {
+            "nombre": "Villa Arias 1°",
+            "coords": {
+            	"lat":-62.10651 ,
+            	"lng":-38.81308}
+        }, {
+            "nombre": "Villa Arias 2°",
+            "coords": {
+            	"lat":-62.10723 ,
+            	"lng":-38.81066}
+        }, {
+            "nombre": "Villa Arias 3°",
+            "coords": {
+            	"lat":-62.10798 ,
+            	"lng":-38.8080}
+        }, {
+            "nombre": "Barrio El Porvenir",
+            "coords": {
+            	"lat":-62.11338 ,
+            	"lng":-38.7893}
+        }, {
+            "nombre": "Pago Chico",
+            "coords": {
+            	"lat":-62.11536 ,
+            	"lng":-38.7814}
+        }, {
+            "nombre": "Agromax",
+            "coords": {
+            	"lat":-62.14762 ,
+            	"lng":-38.7697}
+        }, {
+            "nombre": "Portal  del Este",
+            "coords": {
+            	"lat":-62.16648 ,
+            	"lng":-38.7629}
+        }, {
+            "nombre": "Rafael Obligado 6000",
+            "coords": {
+            	"lat":-62.17471 ,
+            	"lng":-38.7551}
+        }, {
+            "nombre": "Rafael Obligado 5800",
+            "coords": {
+            	"lat":-62.17823 ,
+            	"lng":-38.7544}
+        }, {
+            "nombre": "Rafael Obligado 5100",
+            "coords": {
+            	"lat":-62.1887 ,
+            	"lng":-38.7522}
+        }, {
+            "nombre": "Rafael Obligado 4800",
+            "coords": {
+            	"lat":-62.19662 ,
+            	"lng":-38.7506}
+        }, {
+            "nombre": "Coca-Cola",
+            "coords": {
+            	"lat":-62.20783 ,
+            	"lng":-38.7460}
+        }, {
+            "nombre": "Rincón 3900",
+            "coords": {
+            	"lat":-62.21304 ,
+            	"lng":-38.7422}
+        }, {
+            "nombre": "Rincón 3700",
+            "coords": {
+            	"lat":-62.21496 ,
+            	"lng":-38.7408}
+        }, {
+            "nombre": "Rincón 3500",
+            "coords": {
+            	"lat":-62.2168 ,
+            	"lng":-38.7391}
+        }, {
+            "nombre": "Rincón 3300",
+            "coords": {
+            	"lat":-62.21876 ,
+            	"lng":-38.7375}
+        }, {
+            "nombre": "Av. Lainez 2900",
+            "coords": {
+            	"lat":-62.22275 ,
+            	"lng":-38.7331}
+        }, {
+            "nombre": "Av. Lainez 2700 ",
+            "coords": {
+            	"lat":-62.22503 ,
+            	"lng":-38.7314}
+        }, {
+            "nombre": "Hospital Penna",
+            "coords": {
+            	"lat":-62.2281 ,
+            	"lng":-38.7291}
+        }, {
+            "nombre": "Necochea 790",
+            "coords": {
+            	"lat":-62.23376 ,
+            	"lng":-38.7322}
+        }, {
+            "nombre": "Necochea 562",
+            "coords": {
+            	"lat":-62.23565 ,
+            	"lng":-38.73380}
+        }, {
+            "nombre": "Necochea 374",
+            "coords": {
+            	"lat":-62.23745 ,
+            	"lng":-38.73524}
+        }, {
+            "nombre": "Necochea 78",
+            "coords": {
+            	"lat":-62.24194 ,
+            	"lng":-38.73885}
+        }, {
+            "nombre": "Brown 2200",
+            "coords": {
+            	"lat":-62.24371 ,
+            	"lng":-38.73921}
+        }, {
+            "nombre": "Terminal Bahia Blanca",
+            "coords": {
+            	"lat":-62.24836 ,
+            	"lng":-38.73565}
+        }, {
+            "nombre": "Brown 1450",
+            "coords": {
+            	"lat":-62.25247 ,
+            	"lng":-38.73195}
+        }, {
+            "nombre": "Brown 1144",
+            "coords": {
+            	"lat":-62.25530 ,
+            	"lng":-38.72979}
+        }, {
+            "nombre": "Plaza 9  de Julio",
+            "coords": {
+            	"lat":-62.25845 ,
+            	"lng":-38.72739}
+        }, {
+            "nombre": "Brown 680",
+            "coords": {
+            	"lat":-62.26081 ,
+            	"lng":-38.72559}
+        }, {
+            "nombre": "Brown 426",
+            "coords": {
+            	"lat":-62.26350 ,
+            	"lng":-38.72355}
+        }, {
+            "nombre": "McDonald's",
+            "coords": {
+            	"lat":-62.26519 ,
+            	"lng":-38.72227}
+        }, {
+            "nombre": "Colon y Vieytes",
+            "coords": {
+            	"lat":-62.26876 ,
+            	"lng":-38.71962}
+        }, {
+            "nombre": "Vieytes 235",
+            "coords": {
+            	"lat":-62.27088 ,
+            	"lng":-38.71807}
+        }, {
+            "nombre": "Vieytes y Roca",
+            "coords": {
+            	"lat":-62.27276 ,
+            	"lng":-38.71666}
+        }, {
+            "nombre": "11  de Abril 251",
+            "coords": {
+            	"lat":-62.26744 ,
+            	"lng":-38.71229}
+        }, {
+            "nombre": "11 de Abril y Alem",
+            "coords": {
+            	"lat":-62.26410 ,
+            	"lng":-38.70986}
+        }, {
+            "nombre": "12  de Octubre 423",
+            "coords": {
+            	"lat":-62.26263 ,
+            	"lng":-38.70778}
+        }, {
+            "nombre": "Uns - 12 de Octubre",
+            "coords": {
+            	"lat":-62.26731 ,
+            	"lng":-38.70198}
+        }, {
+            "nombre": "Parque de Mayo",
+            "coords": {
+            	"lat":-62.26864 ,
+            	"lng":-38.70031}
+        }
+
+
+    ]
+
+}
