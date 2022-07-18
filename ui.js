@@ -1,12 +1,10 @@
 // if ('serviceWorker' in navigator) {
 //     navigator.serviceWorker.register('service-worker.js');
 // }
-
+import {update} from './main.js'
 
 const settingsPanel = document.querySelector('.settings-panel')
 const settingsButton = document.querySelector('.settings-button')
-const showListButton = document.querySelector('.show-list-button')
-showListButton.style['text-align'] = 'center'
 
 settingsButton.addEventListener('click', toggleSettingsPanel)
 
@@ -15,18 +13,17 @@ function toggleSettingsPanel() {
     if (settingsPanel.style.top === "0px") {
         settingsButton.textContent = "Configuración";
         settingsPanel.style.top = "93%";
+        update(marker,direction)
 
     } else {
-
         settingsButton.textContent = "Cerrar configuración";
         settingsPanel.style.top = 0;
-
     }
 }
 
 let map = L.map('map').setView([-38.8408, -62.1655], 10);
-let marker
-let direccion
+let marker = null
+let direction = null
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -47,7 +44,6 @@ function setMarker(lat, lng) {
     }
     map.setView([lat,lng],17)
     marker = L.marker([lat, lng]).addTo(map);
-    console.log(marker,direccion)
 }
 
 const radioOptions = document.querySelector('.radio-toolbar')
@@ -58,10 +54,10 @@ function handleSelectedOption() {
     let vuelta = document.getElementById('vuelta')
 
     if (ida.checked) {
-        direccion = ida.id
+        direction = ida.id
         fillList(ida.id)
     } else if (vuelta.checked) {
-        direccion = vuelta.id
+        direction = vuelta.id
         fillList(vuelta.id)
     }
 
@@ -71,9 +67,9 @@ import file from './paradas.json'assert {type: 'json'};
 
 const list = document.querySelector('#list')
 
-function fillList(direction) {
+function fillList(direction1) {
     
-    list.innerHtml = ''
+    list.innerHTML = ''
     let option1 = document.createElement('OPTION')
     option1.className = "show-list-button"
     option1.selected = true
@@ -82,14 +78,15 @@ function fillList(direction) {
     option1.textContent = 'Seleccionar parada'
     list.appendChild(option1)
 
-    if (direction == 'ida') {
+
+    if (direction1 == "ida") {
         file.paradas_ida.forEach(parada => {
             let option = document.createElement('OPTION')
             option.textContent = parada.nombre
-            option.value = parada.coords
+            option.value = JSON.stringify(parada.coords)
             list.appendChild(option)
         })
-    } else {
+    } else if (direction1 == "vuelta"){
         file.paradas_vuelta.forEach(parada => {
             let option = document.createElement('OPTION')
             option.textContent = parada.nombre
@@ -100,11 +97,12 @@ function fillList(direction) {
 }
 
 fillList("vuelta")
-direccion = "vuelta"
+direction = "vuelta"
 
 list.addEventListener('change',listChange)
 
 function listChange(e) {
+
     let lat = JSON.parse(list.options[list.selectedIndex].value).lat
     let lng = JSON.parse(list.options[list.selectedIndex].value).lng
     setMarker(lng,lat)
@@ -125,3 +123,4 @@ function getLocation() {
         alert('No se puede obtener la ubicacion')
     }
 }
+
