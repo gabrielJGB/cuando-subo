@@ -120,11 +120,11 @@ function getETA(location) {
 
 import {segments_BP,segments_PB} from './segments.js'
 
-function getSegmentNumber(coordinates){
-    const point = { latitude: coordinates[1], longitude: coordinates[0]};
+function getSegmentNumber(lat,lng){
+    const point = { latitude: lat, longitude: lng};
 
     for(let i=0;i<segments_BP.length;i++){
-        if(geolib.isPointInPolygon(coordinates,segments_BP[i])){
+        if(geolib.isPointInPolygon(point,segments_BP[i])){
             return (i+1)
         }
     }

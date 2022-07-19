@@ -1,29 +1,55 @@
 // if ('serviceWorker' in navigator) {
 //     navigator.serviceWorker.register('service-worker.js');
 // }
-import {update} from './main.js'
+import {
+    update
+} from './main.js'
 
+const mainContainer = document.querySelector('.main-container')
 const settingsPanel = document.querySelector('.settings-panel')
 const settingsButton = document.querySelector('.settings-button')
+const loadingIcon = document.querySelector('.loading-icon')
+const list = document.querySelector('#list')
+const ida = document.querySelector('#ida')
+const vuelta = document.querySelector('#vuelta')
+list.addEventListener('change', listChange)
 
 settingsButton.addEventListener('click', toggleSettingsPanel)
 
 function toggleSettingsPanel() {
 
     if (settingsPanel.style.top === "0px") {
-        settingsButton.textContent = "Configuración";
-        settingsPanel.style.top = "93%";
-        update(marker,direction)
+        settingsButton.textContent = "Configuración"
+        settingsPanel.style.top = "93%"
+        if (marker != null) {
+            let lat = marker._latlng.lat
+            let lng = marker._latlng.lng
 
+
+            if (sessionStorage.getItem("direction") == null || isSessionStorageUpdated(lng,lat,direction)) {
+                update(lng, lat, direction)
+                setSessionStorage(lng, lat, direction)   
+            }
+        }
+        
     } else {
-        settingsButton.textContent = "Cerrar configuración";
+        settingsButton.textContent = "Cerrar configuración"
         settingsPanel.style.top = 0;
     }
 }
 
+function setSessionStorage(lng, lat, direction) {
+
+    sessionStorage.setItem("lat", lat);
+    sessionStorage.setItem("lng", lng);
+    sessionStorage.setItem("direction", direction);
+}
+
+
 let map = L.map('map').setView([-38.8408, -62.1655], 10);
 let marker = null
-let direction = null
+let direction = "vuelta"
+fillList("vuelta")
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -38,11 +64,11 @@ function onMapClick(e) {
 }
 
 
-function setMarker(lat, lng) {
+export function setMarker(lat, lng) {
     if (marker != null) {
         marker.remove()
     }
-    map.setView([lat,lng],17)
+    map.setView([lat, lng], 17)
     marker = L.marker([lat, lng]).addTo(map);
 }
 
@@ -50,9 +76,6 @@ const radioOptions = document.querySelector('.radio-toolbar')
 radioOptions.addEventListener('change', handleSelectedOption)
 
 function handleSelectedOption() {
-    let ida = document.getElementById('ida')
-    let vuelta = document.getElementById('vuelta')
-
     if (ida.checked) {
         direction = ida.id
         fillList(ida.id)
@@ -63,12 +86,10 @@ function handleSelectedOption() {
 
 }
 
-import file from './paradas.json'assert {type: 'json'};
-
-const list = document.querySelector('#list')
+import file from './paradas.json' assert { type: 'json' };
 
 function fillList(direction1) {
-    
+
     list.innerHTML = ''
     let option1 = document.createElement('OPTION')
     option1.className = "show-list-button"
@@ -86,7 +107,7 @@ function fillList(direction1) {
             option.value = JSON.stringify(parada.coords)
             list.appendChild(option)
         })
-    } else if (direction1 == "vuelta"){
+    } else if (direction1 == "vuelta") {
         file.paradas_vuelta.forEach(parada => {
             let option = document.createElement('OPTION')
             option.textContent = parada.nombre
@@ -96,16 +117,11 @@ function fillList(direction1) {
     }
 }
 
-fillList("vuelta")
-direction = "vuelta"
-
-list.addEventListener('change',listChange)
-
 function listChange(e) {
 
     let lat = JSON.parse(list.options[list.selectedIndex].value).lat
     let lng = JSON.parse(list.options[list.selectedIndex].value).lng
-    setMarker(lng,lat)
+    setMarker(lng, lat)
 }
 
 
@@ -117,10 +133,42 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition((position) => {
             let lat = position.coords.latitude
             let lng = position.coords.longitude
-            setMarker(lat,lng)
+            setMarker(lat, lng)
         });
     } else {
         alert('No se puede obtener la ubicacion')
     }
 }
 
+
+
+getSessionStorage()
+
+function getSessionStorage() {
+    if (sessionStorage.getItem("direction") != null) {
+        loadingIcon.style.display = "block"
+        let lng = sessionStorage.getItem("lng")
+        let lat = sessionStorage.getItem("lat")
+        let direction = sessionStorage.getItem("direction")
+        document.querySelector(`#${direction}`).checked = true
+
+        update(lng, lat, direction)
+        setMarker(lat, lng)
+        return {
+            lng,
+            lat,
+            direction
+        }
+    } else {
+
+        // mainContainer.textContent = 'Selecciona la parada y el sentido del viaje en la configuración'
+    }
+}
+
+
+function isSessionStorageUpdated(lng,lat,direction) {
+    let prev_lng = sessionStorage.getItem("lng")
+    let prev_lat = sessionStorage.getItem("lat")
+    let prev_direction = sessionStorage.getItem("direction")
+    return (prev_lat != lat || prev_lng != lng || prev_direction != direction)
+}

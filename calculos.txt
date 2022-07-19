@@ -1,0 +1,74 @@
+SI SEGMENTO_BONDI > SEGMENTO USER:
+	el bondi ya pasó. no hacer nada
+
+----------------------------------
+SI SEGMENTO_BONDI < SEGMENTO USER:
+
+el bondi esta en  el segmento 2
+yo en el 5
+
+los waypoints son: ubicacionBondi, 3, 4,5,miPosicion
+
+-	-	-	-	-	-
+
+el bondi esta en  el segmento 5 (htal italiano)
+yo en el 8 (paso y quintana)
+
+los waypoints son: ubicacionBondi,6,7,8,miPosicion
+
+
+en general: [ubicacionBondi,wayPointBus+1...hasta waypointUser,miposicion] <- Ver esto
+
+---------------------------------
+SI LOS SEGMENTOS SON IGUALES:
+
+si estoy en el medio del segmento 2
+y el bondi en la ultima parte del segmento 2
+
+OPCION1:
+
+hago 2 requests:
+- del wp2 a ubicacion_user. distancia wp_user
+- del wp2 a ubicacion_bondi .distancia wp_user
+
+si: distancia wp_bondi > distancia wp_user 
+	ya pasó
+sino:
+	request. ubicacion_bondi -> ubicacion_user
+
+OPCION2:
+si estoy en el medio del segmento 2
+y el bondi en la primera parte del segmento 2
+
+request matrix:
+
+[wp2,ubicacion_bus,ubicacion_user]
+
+response:
+[0,400,800] //distancias o tiempos
+[400,0,800] 
+[800,400,0] 
+
+si: response[0][1]< response[0][2]
+	el bondi no pasó. 
+	está a (response[0][2] - response[0][1]) m de distancia
+
+	
+
+
+
+
+
+
+
+{coordinates: Array(8), maximum_speed: 80}
+
+El colectivo llega en 39 minutos
+Distancia: 18.5 km
+
+
+
+
+
+
+NOTA: MOVER EL WP0

@@ -16,7 +16,7 @@
 			font-family: 'Rubik';
 			}
 			body{
-				overflow: hidden;
+				/*overflow: hidden;*/
 			}
 			/* -- settings panel -- */
 			h3{
@@ -122,12 +122,12 @@
 		color: #fbfbfb;
 		}
 		option {
-    background-color: white;
-    color: black;
-    padding: 20px;
-    text-align: center;
-    font-size: 19px;
-	}
+		background-color: white;
+		color: black;
+		padding: 20px;
+		text-align: center;
+		font-size: 19px;
+		}
 			/* -- main container -- */
 			.main-container{
 				z-index: -1;
@@ -139,57 +139,80 @@
 				justify-content: center;
 				align-items: center;
 				background-color: #141414;
-				
 					color: white;
 				}
 				
-				.main-container div:nth-child(2){
-					font-size: 22px;
-				}
+		
 				.minutes{
 					font-size:40px
 				}
 				.text1{
-					
+					width: 96%;
 					font-size: 19px;
+					margin-bottom: 20px;
+				}
+				.text2{
+					text-align: justify;
+					font-size: 17px;
 				}
 				.sub-container{
 					width: 90%;
 					color: white;
 					
 				}
+				.loading-icon{
+					position: fixed;
+					top: 30vh;
+					z-index: 10;
+					margin-left: auto;
+					margin-right: auto;
+					left: 0;
+					right: 0;
+					text-align: center;
+					display: none;
+				}
+				.loading-text{
+					color: white;
+					font-size: 21px;
+				}
 		</style>
 	</head>
 	<body>
 		
+
 		<div class="main-container">
-			<div class="sub-container">
-				<!-- <div class="text1">El proximo colectvo llegará a tu ubicación en:</div> -->
-				<!-- <div><span class="minutes"></span> minutos</div> -->
-				<!-- <br> -->
-				<!-- <div>Interno: <span class="bus-id"></span> </div> -->
-				<!-- <div>Ubicación actual: <span class="bus-location">Humberto 555</span></div> -->
-				<!-- <div>Última actualización: <span class="update-time"></span></div> -->
-				<!-- <div>Distancia: <span class="distance"></span> km</div> -->
-				<div>Selecciona la parada y el sentido del viaje en la configuración</div>
-			</div>
+			<!-- <div class="text1">El proximo colectvo llegará a tu ubicación en:</div>
+			<div><span class="minutes"></span> minutos</div>
+			<br>
+			<div>Interno: <span class="bus-id"></span> </div>
+			<div>Ubicación actual: <span class="bus-location">Humberto 555</span></div>
+			<div>Última actualización: <span class="update-time"></span></div>
+			<div>Distancia: <span class="distance"></span> km</div> -->
+			<div>Selecciona la parada y el sentido del viaje en la configuración</div>
 		</div>
+		
+		<div class="loading-icon">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+				style="margin: auto; background: rgba(38, 38, 38, 0); display: block;" width="200px" height="200px"
+				viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+				<circle cx="50" cy="50" fill="none" stroke="#ffffff" stroke-width="10" r="35"
+				stroke-dasharray="164.93361431346415 56.97787143782138">
+				<animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s"
+				values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+				</circle>
+			</svg>
+			<div class="loading-text">Cargando...</div>
+		</div>
+
 		<div class="settings-panel">
 			<button type="button" class="settings-button">Configuración</button>
 			<div class="settings-box">
 				<div class="settings-group direction-settings">
 					<h3>Sentido</h3>
 					<div>Elegí el sentido del viaje:</div>
-					<!-- <div> -->
-					<!-- <input type="radio" id="ida" name="fav_language" value="HTML"> -->
-					<!-- <label for="ida">Punta Alta > Bahía Blanca</label> -->
-					<!-- </div> -->
-					<!-- <div> -->
-					<!-- <input type="radio" id="vuelta" name="fav_language" value="HTML"> -->
-					<!-- <label for="vuelta">Bahía Blanca > Punta Alta</label> -->
-					<!-- </div> -->
+
 					<label class="radio-toolbar">
-						<input type="radio" id="vuelta" name="radio-options" value="vuelta" checked>
+						<input type="radio" id="vuelta" name="radio-options" value="vuelta">
 						<label for="vuelta">Punta Alta > Bahía Blanca</label>
 						<input type="radio" id="ida" name="radio-options" value="vuelta">
 						<label for="ida">Bahía Blanca > Punta Alta</label>
@@ -213,6 +236,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<script src="https://unpkg.com/geolib@3.3.1/lib/index.js"></script>
 		<script src="./main.js" type="module"></script>
 		<script src="./ui.js" type="module"></script>
