@@ -1,10 +1,26 @@
 const mainContainer = document.querySelector('.main-container')
 const loadingIcon = document.querySelector('.loading-icon')
 
-import data_ida from './gj-BB-PA.json'assert {type: 'json'};
+import ruta_ida from './geojson/gj-BB-PA.json'assert {type: 'json'};
+import ruta_vuelta from './geojson/gj-PA-BB.json'assert {type: 'json'};
 
-data_ida.features.shift()
-let wayPoints_ida = data_ida.features.map(obj => ({
+// ;(function () {
+//     var src = '//cdn.jsdelivr.net/npm/eruda';
+//     if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+//     document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+//     document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+// })();
+
+ruta_ida.features.shift()
+let wayPoints_ida = ruta_ida.features.map(obj => ({
+    "coords": {
+        "lng": obj.geometry.coordinates[0],
+        "lat": obj.geometry.coordinates[1]
+    }
+}))
+
+ruta_vuelta.features.shift()
+let wayPoints_vuelta = ruta_vuelta.features.map(obj => ({
     "coords": {
         "lng": obj.geometry.coordinates[0],
         "lat": obj.geometry.coordinates[1]
@@ -12,7 +28,6 @@ let wayPoints_ida = data_ida.features.map(obj => ({
 }))
 
 
-console.log(wayPoints_ida)
 
 
 export function update(lng, lat, direction) {
@@ -29,13 +44,13 @@ export function update(lng, lat, direction) {
 
     getCurrentBuses().then(response => {
         let busArray = getBusArray(response, direction)
+                
         console.log(busArray)
         if (busArray.length > 0) {
 
             getBusMatrix(busArray, lng, lat).then(matrix => {
 
                 loadingIcon.style.display = "none"
-
                 let nearestBusIndex = getNearestBusIndex(matrix)
                 let nearestBus = busArray[nearestBusIndex]
 
@@ -51,9 +66,12 @@ export function update(lng, lat, direction) {
                 if (segmentNumberBus != -1) {
                     getDirections(lng, lat, bus_lng, bus_lat, segmentNumberBus, segmentNumberUser, direction).then((data) => {
                         if(data != null){
+
                             displayData(data.distance, data.minutes, nearestBus)
                         }
                     })
+                }else{
+                    mainContainer.textContent = "No hay colectivos en camino. El siguiente sale a las "+showNextDeparture(direction)
                 }
                 // getDirections(lng, lat, -62.2644, -38.7092, 0, segmentNumberUser, direction)
 
@@ -61,35 +79,96 @@ export function update(lng, lat, direction) {
 
         } else {
             loadingIcon.style.display = "none"
-            mainContainer.textContent = 'No hay colectivos cerca'
+            mainContainer.textContent = "No hay colectivos en camino. El siguiente sale a las "+showNextDeparture(direction)
         }
     })
 }
 
 
 function displayData(distance, minutes, nearestBus) {
+    let s = ''
+    if(minutes!=1){
+        s = 's'
+    }
+
+    let m = ' '
+    if(distance <= 0.1){
+        m = '~'
+    }
+
+    let time = new Date(nearestBus.dt_tracker)
+    let time1 = new Date(time.setHours(time.getHours()-3))
+    let time_hs = String(time1.getHours()).padStart(2,0)
+    let time_min = String(time1.getMinutes()).padStart(2,0)
+    let time_sec = String(time1.getSeconds()).padStart(2,0)
 
     mainContainer.innerHTML = `
 
     <div class="text1">El proximo colectvo llegará a tu ubicación en:</div>
-    <div><span class="minutes">${minutes}</span> minutos</div>
+    <div><span class="minutes">${m}${minutes}</span> minuto${s}</div>
     <br>
     <div class="text2">
 
     <div>Interno: <span class="bus-id">${nearestBus.interno}</span> </div>
-    <div>Última actualización: <span class="update-time">${nearestBus.dt_tracker}</span></div>
     <div>Distancia: <span class="distance">${distance}</span> km</div> 
+    <div>Actualizado a las: <span class="update-time">${time_hs}:${time_min}:${time_sec}</span></div>
     
     </div>
+    
 `
 
 }
 
+import timetables from './horarios.json' assert {type: 'json'};
+
+
+
+function showNextDeparture(direction){
+    let nextDeparture = []
+    let currentTime = new Date().setMinutes(new Date().getMinutes()+1)
+
+    if(direction =="ida"){
+        timetables.horarios_ida.forEach(e=>{    
+            let busTime = new Date()
+            busTime.setHours(e.horas)
+            busTime.setMinutes(e.minutos)
+            busTime.setSeconds('00')
+            
+            if(busTime.getHours()<5){
+                 busTime.setDate(busTime.getDate()+1)
+            }
+            if(busTime>currentTime){
+                nextDeparture.push(busTime)
+            }
+        })
+    }else{
+        timetables.horarios_vuelta.forEach(table=>{    
+            let busTime = new Date()
+            busTime.setHours(table.horas)
+            busTime.setMinutes(table.minutos)
+            busTime.setSeconds('00')
+
+            if(busTime.getHours()<5){
+                 busTime.setDate(busTime.getDate()+1)
+            }
+            if(busTime>currentTime){
+                nextDeparture.push(busTime)
+            }
+        })
+    }
+
+    let hours = String(nextDeparture[0].getHours()).padStart(2,0)
+    let minutes = String(nextDeparture[0].getMinutes()).padStart(2,0)
+
+    return (hours+':'+minutes)
+}
+
 async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPointNumberBus, wayPointNumberUser, direction) {
     // console.log(user_lng, user_lat,   bus_lng, bus_lat, wayPointNumberBus, wayPointNumberUser, direction)
-    console.log(wayPointNumberBus, wayPointNumberUser)
+    // console.log(wayPointNumberBus, wayPointNumberUser)
     if (wayPointNumberBus > wayPointNumberUser) {
-        mainContainer.textContent ='No hay colectivos cerca'
+        mainContainer.textContent ='No hay colectivos en camino. El siguiente sale a las '+showNextDeparture(direction)
+
         return null
 
     } else if (wayPointNumberBus < wayPointNumberUser) {
@@ -104,13 +183,14 @@ async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPointNumbe
         coordinates.push([parseFloat(bus_lng), parseFloat(bus_lat)])
 
         for (let i = wayPointNumberBus + 1; i <= wayPointNumberUser; i++) {
-            // if(direction == 'ida')
-            // console.log(i)
-            coordinates.push([wayPoints_ida[i].coords.lng, wayPoints_ida[i].coords.lat])
+            if(direction == 'ida')
+                coordinates.push([wayPoints_ida[i].coords.lng, wayPoints_ida[i].coords.lat])
+            else if(direction == 'vuelta')
+                coordinates.push([wayPoints_vuelta[i].coords.lng, wayPoints_vuelta[i].coords.lat])
         }
 
         coordinates.push([parseFloat(user_lng), parseFloat(user_lat)])
-        console.log(coordinates)
+        // console.log(coordinates)
 
         const params = {
             'coordinates': coordinates,
@@ -142,10 +222,16 @@ async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPointNumbe
         // console.log('El colectivo llega en '+minutes+ ' minutos')
         // console.log('Distancia: '+distance +' km')
     } else if (wayPointNumberBus == wayPointNumberUser) {
-        if (direction == 'ida') {
-            console.log(wayPointNumberBus,wayPointNumberUser)
-            let wp_lng = wayPoints_ida[wayPointNumberBus].coords.lng
-            let wp_lat = wayPoints_ida[wayPointNumberBus].coords.lat
+
+        let wp_lng,wp_lat
+        if (direction == 'ida'){
+            wp_lng = wayPoints_ida[wayPointNumberBus].coords.lng
+            wp_lat = wayPoints_ida[wayPointNumberBus].coords.lat
+        }else if (direction == 'vuelta'){
+            wp_lng = wayPoints_vuelta[wayPointNumberBus].coords.lng
+            wp_lat = wayPoints_vuelta[wayPointNumberBus].coords.lat
+
+        }
 
             const params = {
                 'locations': [
@@ -170,17 +256,17 @@ async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPointNumbe
             const matrix = await response.json()
 
             if (matrix.durations[0][1] > matrix.durations[0][2]) {
-                mainContainer.textContent ='No hay colectivos cerca'
+                mainContainer.textContent ='No hay colectivos en camino.\n El siguiente sale a las '+showNextDeparture(direction)
                 return null
             } else {
-                console.log(matrix)
+                
                 let duration = matrix.durations[0][2] - matrix.durations[0][1]
                 let minutes = Math.ceil((duration + duration * 0.25) / 60)
                 let distance = ((matrix.distances[0][2] - matrix.distances[0][1])/1000).toFixed(1)
                 return {distance,minutes}
             }
 
-        }
+        
 
     }
 
@@ -199,7 +285,7 @@ function getBusArray(response, direction) {
     let busArray = []
     response.data.forEach(obj => {
 
-        if (obj.direccion == direction && !obj.name.includes('CARGO') && !obj.name.includes('BOXER') && obj.interno != '116') {
+        if (obj.direccion == direction && !obj.name.includes('CARGO') && !obj.name.includes('BOXER') && obj.interno != '116'&& obj.interno != '110') {
             busArray.push(obj)
 
         }
@@ -249,10 +335,10 @@ let arrayPolygonsIda = polygons_ida.features.map(obj =>
     obj.geometry.coordinates[0]
 )
 
-// import segments_vuelta from './geojson/polygon_ida.json' assert { type: 'json' };
-// let arrayPolygonsVuelta = polygon_vuelta.features.map(obj=>
-//     obj.geometry.coordinates[0]
-// )
+import polygons_vuelta from './geojson/polygons_vuelta.json' assert { type: 'json' };
+let arrayPolygonsVuelta = polygons_vuelta.features.map(obj=>
+    obj.geometry.coordinates[0]
+)
 
 
 function getSegmentNumber(lng, lat, direction) {
@@ -262,6 +348,7 @@ function getSegmentNumber(lng, lat, direction) {
     };
 
     if (direction == 'ida') {
+    
         for (let i = 0; i < arrayPolygonsIda.length; i++) {
 
             if (geolib.isPointInPolygon(point, arrayPolygonsIda[i])) {
@@ -269,12 +356,15 @@ function getSegmentNumber(lng, lat, direction) {
             }
         }
     }
-    // else{
-    // 	for (let i = 0; i < arrayPolygonsVuelta.length; i++) {
-    //         if (geolib.isPointInPolygon(point, arrayPolygonsVuelta[i])) {
-    //             return (i)
-    //         }
-    //     }
-    // }
+    else if(direction == 'vuelta'){
+    
+    	for (let i = 0; i < arrayPolygonsVuelta.length; i++) {
+            if (geolib.isPointInPolygon(point, arrayPolygonsVuelta[i])) {
+                return (i)
+            }
+        }
+    }
     return -1
 }
+
+

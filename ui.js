@@ -25,10 +25,11 @@ function toggleSettingsPanel() {
             let lat = marker._latlng.lat
             let lng = marker._latlng.lng
 
+            let direction =getSelectedDirection()
 
             if (sessionStorage.getItem("direction") == null || isSessionStorageUpdated(lng,lat,direction)) {
-                update(lng, lat, direction)
-                setSessionStorage(lng, lat, direction)   
+                update(lng, lat)
+                setSessionStorage(lng, lat)   
             }
         }
         
@@ -38,18 +39,31 @@ function toggleSettingsPanel() {
     }
 }
 
-function setSessionStorage(lng, lat, direction) {
-
+function setSessionStorage(lng, lat) {
+    
+    let direction = getSelectedDirection()
+    
     sessionStorage.setItem("lat", lat);
     sessionStorage.setItem("lng", lng);
     sessionStorage.setItem("direction", direction);
 }
 
 
+function getSelectedDirection(){
+    let direction
+    if(document.querySelector('#ida').checked){
+        return 'ida'
+    }
+    else{
+        return 'vuelta'
+    }
+}
+
+
 let map = L.map('map').setView([-38.8408, -62.1655], 10);
 let marker = null
-let direction = "vuelta"
-fillList("vuelta")
+
+
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -77,10 +91,10 @@ radioOptions.addEventListener('change', handleSelectedOption)
 
 function handleSelectedOption() {
     if (ida.checked) {
-        direction = ida.id
+        
         fillList(ida.id)
     } else if (vuelta.checked) {
-        direction = vuelta.id
+        
         fillList(vuelta.id)
     }
 
@@ -125,20 +139,20 @@ function listChange(e) {
 }
 
 
-const getLocationButton = document.querySelector('.get-location-button')
-getLocationButton.addEventListener('click', getLocation)
+// const getLocationButton = document.querySelector('.get-location-button')
+// getLocationButton.addEventListener('click', getLocation)
 
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            let lat = position.coords.latitude
-            let lng = position.coords.longitude
-            setMarker(lat, lng)
-        });
-    } else {
-        alert('No se puede obtener la ubicacion')
-    }
-}
+// function getLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition((position) => {
+//             let lat = position.coords.latitude
+//             let lng = position.coords.longitude
+//             setMarker(lat, lng)
+//         });
+//     } else {
+//         alert('No se puede obtener la ubicacion')
+//     }
+// }
 
 
 
@@ -150,8 +164,10 @@ function getSessionStorage() {
         let lng = sessionStorage.getItem("lng")
         let lat = sessionStorage.getItem("lat")
         let direction = sessionStorage.getItem("direction")
-        document.querySelector(`#${direction}`).checked = true
-
+        if(direction != null){
+           document.querySelector(`#${direction}`).checked = true
+        }
+        fillList(direction)
         update(lng, lat, direction)
         setMarker(lat, lng)
         return {

@@ -109,6 +109,7 @@
 		font-size: 16px;
 		border-radius: 4px;
 		border:dashed 1px #727272;
+		cursor: pointer;
 		
 		}
 		.radio-toolbar label:hover {
@@ -139,12 +140,13 @@
 				justify-content: center;
 				align-items: center;
 				background-color: #141414;
-					color: white;
+				color: white;
+				font-size: 18px;
 				}
 				
 		
 				.minutes{
-					font-size:40px
+					font-size:50px
 				}
 				.text1{
 					width: 96%;
@@ -154,6 +156,9 @@
 				.text2{
 					text-align: justify;
 					font-size: 17px;
+				}
+				.text2 div {
+    				margin-bottom: 4px;
 				}
 				.sub-container{
 					width: 90%;
@@ -170,6 +175,7 @@
 					right: 0;
 					text-align: center;
 					display: none;
+					background-color: #141414;
 				}
 				.loading-text{
 					color: white;
@@ -228,7 +234,7 @@
 							<option class="show-list-button" selected disabled hidden>Seleccionar parada</option>
 							
 						</select>
-						<button class="get-location-button" type="button">Detectar ubicación</button>
+						<!-- <button class="get-location-button" type="button">Detectar ubicación</button> -->
 					</div>
 					
 					
@@ -237,8 +243,10 @@
 			</div>
 		</div>
 		
+		<!-- <script src="//cdn.jsdelivr.net/npm/eruda"></script> -->
+		<!-- <script>eruda.init();</script> -->
 		<script src="https://unpkg.com/geolib@3.3.1/lib/index.js"></script>
-		<script src="./main.js" type="module"></script>
-		<script src="./ui.js" type="module"></script>
+		<script src="./main.js" defer type="module"></script>
+		<script src="./ui.js" defer type="module"></script>
 	</body>
 </html>
