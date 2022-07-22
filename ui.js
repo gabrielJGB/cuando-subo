@@ -1,6 +1,6 @@
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('service-worker.js');
-// }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+}
 import {
     update
 } from './main.js'
@@ -100,7 +100,7 @@ function handleSelectedOption() {
 
 }
 
-import file from './paradas.json' assert { type: 'json' };
+import file from './geojson/paradas.json' assert { type: 'json' };
 
 function fillList(direction1) {
 
