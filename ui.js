@@ -1,6 +1,6 @@
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-}
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('service-worker.js');
+// }
 import {
     update
 } from './main.js'
@@ -15,12 +15,13 @@ const vuelta = document.querySelector('#vuelta')
 list.addEventListener('change', listChange)
 
 settingsButton.addEventListener('click', toggleSettingsPanel)
+settingsPanel.style.left = "-100%"
 
 function toggleSettingsPanel() {
 
-    if (settingsPanel.style.top === "0px") {
-        settingsButton.textContent = "Configuración"
-        settingsPanel.style.top = "93%"
+    if (settingsPanel.style.left == "0px") {
+        // settingsButton.textContent = "Configuración"
+        settingsPanel.style.left = "-100%"
         if (marker != null) {
             let lat = marker._latlng.lat
             let lng = marker._latlng.lng
@@ -33,9 +34,10 @@ function toggleSettingsPanel() {
             }
         }
         
-    } else {
-        settingsButton.textContent = "Cerrar configuración"
-        settingsPanel.style.top = 0;
+    } else if(settingsPanel.style.left == "-100%"){
+
+        // settingsButton.textContent = "Cerrar configuración"
+        settingsPanel.style.left = "0px";
     }
 }
 

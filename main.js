@@ -1,6 +1,6 @@
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-}
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('service-worker.js');
+// }
 
 const mainContainer = document.querySelector('.main-container')
 const loadingIcon = document.querySelector('.loading-icon')
@@ -75,7 +75,7 @@ export function update(lng, lat, direction) {
                         }
                     })
                 }else{
-                    mainContainer.textContent = "No hay colectivos en camino. El siguiente sale a las "+getSchedule(direction).next +'. Tené en cuenta que el colectivo anterior ('+getSchedule(direction).previous+')'+ ' podría estar demorado'
+                    mainContainer.textContent = "No hay colectivos en camino."
                 }
                 // getDirections(lng, lat, -62.2644, -38.7092, 0, segmentNumberUser, direction)
 
@@ -83,7 +83,7 @@ export function update(lng, lat, direction) {
 
         } else {
             loadingIcon.style.display = "none"
-            mainContainer.textContent = "No hay colectivos en camino. El siguiente sale a las "+getSchedule(direction).next +'. Tené en cuenta que el colectivo anterior ('+getSchedule(direction).previous+')'+ ' podría estar demorado'
+            mainContainer.textContent = "No hay colectivos en camino"
         }
     })
 }
@@ -186,8 +186,7 @@ async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPointNumbe
     // console.log(user_lng, user_lat,   bus_lng, bus_lat, wayPointNumberBus, wayPointNumberUser, direction)
     // console.log(wayPointNumberBus, wayPointNumberUser)
     if (wayPointNumberBus > wayPointNumberUser) {
-        mainContainer.textContent ='No hay colectivos en camino. El siguiente sale a las '+getSchedule(direction).next +'. Tené en cuenta que el colectivo anterior ('+getSchedule(direction).previous+')'+ ' podría estar demorado'
-
+        mainContainer.textContent ="No hay colectivos en camino"
         return null
 
     } else if (wayPointNumberBus < wayPointNumberUser) {
@@ -275,7 +274,7 @@ async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPointNumbe
             const matrix = await response.json()
 
             if (matrix.durations[0][1] > matrix.durations[0][2]) {
-                mainContainer.textContent ='No hay colectivos en camino.\n El siguiente sale a las '+getSchedule(direction).next +'. Tené en cuenta que el colectivo anterior ('+getSchedule(direction).previous+')'+ ' podría estar demorado'
+                mainContainer.textContent ="No hay colectivos en camino"
                 return null
             } else {
                 
@@ -295,7 +294,7 @@ async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPointNumbe
 
 
 async function getCurrentBuses() {
-    const response = await fetch('https://fast-dawn-89938.herokuapp.com/https://www.gpsbahia.com.ar/frontend/track_data/3.json')
+    const response = await fetch('https://thingproxy.freeboard.io/fetch/https://www.gpsbahia.com.ar/frontend/track_data/3.json')
     
             const parsed = await response.json()
             return parsed
