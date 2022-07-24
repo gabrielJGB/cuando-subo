@@ -295,10 +295,12 @@ async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPointNumbe
 
 
 async function getCurrentBuses() {
-    const response = await fetch('https://thingproxy.freeboard.io/fetch/https://www.gpsbahia.com.ar/frontend/track_data/3.json')
-    
+    const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://www.gpsbahia.com.ar/frontend/track_data/3.json')}`)
+    // const response = await fetch('http://alloworigin.com/get?url=https://www.gpsbahia.com.ar/frontend/track_data/3.json')
+            
             const parsed = await response.json()
-            return parsed
+            console.log(JSON.parse(parsed.contents))
+            return JSON.parse(parsed.contents)
     
 }
 
