@@ -17,16 +17,19 @@ list.addEventListener('change', listChange)
 settingsButton.addEventListener('click', toggleSettingsPanel)
 settingsPanel.style.left = "-100%"
 
+
 function toggleSettingsPanel() {
 
     if (settingsPanel.style.left == "0px") {
         // settingsButton.textContent = "Configuración"
+
         settingsPanel.style.left = "-100%"
+
         if (marker != null) {
             let lat = marker._latlng.lat
             let lng = marker._latlng.lng
 
-            let direction =getSelectedDirection()
+            let direction = getSelectedDirection()
 
             if (sessionStorage.getItem("direction") == null || isSessionStorageUpdated(lng,lat,direction)) {
                 update(lng, lat)

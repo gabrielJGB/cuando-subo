@@ -4,6 +4,7 @@
 
 const mainContainer = document.querySelector('.main-container')
 const loadingIcon = document.querySelector('.loading-icon')
+loadingIcon.style.display = "none"
 
 import ruta_ida from './geojson/gj-BB-PA-1.json'assert {type: 'json'};
 import ruta_vuelta from './geojson/gj-PA-BB.json'assert {type: 'json'};
@@ -43,13 +44,13 @@ export function update(lng, lat, direction) {
         direction = "vuelta"
     }
 
-    mainContainer.textContent = ''
+    mainContainer.textContent = ""
+    
     loadingIcon.style.display = "block"
 
     getCurrentBuses().then(response => {
         let busArray = getBusArray(response, direction)
                 
-    
         if (busArray.length > 0) {
 
             getBusMatrix(busArray, lng, lat).then(matrix => {
@@ -366,6 +367,8 @@ function getSegmentNumber(lng, lat, direction) {
         latitude: lat,
         longitude: lng
     };
+
+    
 
     if (direction == 'ida') {
     

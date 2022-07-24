@@ -9,11 +9,14 @@ overflow: hidden;
 }
 /* -- settings panel -- */
 h3{
-margin-bottom: 7px;
+    margin-bottom: 7px;
+    font-weight: 100;
+    font-size: 23px;
 }
 .navbar{
 display: flex;
 height: 10vh;
+z-index: 11;
 position: fixed;
 top: 0;
 width: 100%;
@@ -53,16 +56,20 @@ transition: 0.5s all;
         overflow: auto;
 }
 .settings-group{
-background-color: #ffffffe6;
-margin: 5px;
-box-shadow: 0 0 5px black;
-padding: 5px;
-
+    background-color: #1e1e1e;
+    color: #e3e3e3;
+    margin: 0 6px 8px 6px;
+    box-shadow: 0 0 5px black;
+    padding: 5px;
 /*   background-color: #202020;
 margin: 5px;
 box-shadow: 0 0 5px #000000;
 padding: 5px;
 color: #efefef;*/
+}
+
+.settings-group:nth-child(1){
+	margin-top: 6px;
 }
 .settings-button{
     z-index: 4;
@@ -108,7 +115,7 @@ overflow: auto;
 }
 .buttons button:hover{
 	background-color: #197bcb;
-color: #fbfbfb;
+color: black;
 }
 .show-list-button{
 	text-align: center;
@@ -144,7 +151,8 @@ cursor: pointer;
 
 }
 .radio-toolbar label:hover {
-background-color: #dfd;
+	color: black;
+background-color: #ffffff69;
 }
 .radio-toolbar input[type="radio"]:focus + label {
 
@@ -197,17 +205,17 @@ font-size: 18px;
 	
 }
 .loading-icon{
+
 	position: fixed;
 	top: 9vh;
     padding: 21vh 0;
-	z-index: 10;
+	z-index: 6;
 	margin-left: auto;
 	margin-right: auto;
 	left: 0;
 	right: 0;
 	text-align: center;
 	height: -webkit-fill-available;
-	display: none;
 	background-color: #141414;
 }
 .loading-text{
