@@ -368,7 +368,7 @@ function getSegmentNumber(lng, lat, direction) {
         longitude: lng
     };
 
-    
+
 
     if (direction == 'ida') {
     
