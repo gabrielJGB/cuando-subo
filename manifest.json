@@ -1,11 +1,11 @@
 {
-    "name": "Cuando llega?",
-    "short_name": "Cuando llega?",
+    "name": "Cuando subo?",
+    "short_name": "Cuando subo?",
     "start_url": "index.html",
     "scope": "./",
     "icons": [
       {
-        "src": "./icon.png",
+        "src": "./images/icon.png",
         "sizes": "185x96",
         "type": "image/png"
       }

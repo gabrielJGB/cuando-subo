@@ -13,6 +13,7 @@ const loadingIcon = document.querySelector('.loading-icon')
 const list = document.querySelector('#list')
 const ida = document.querySelector('#ida')
 const vuelta = document.querySelector('#vuelta')
+let direction = getSelectedDirection()
 let initialX,isVisible,c
 list.addEventListener('change', listChange)
 loadingIcon.style.display = 'none'
@@ -23,13 +24,24 @@ export function writeMainContainer(text){
     mainContainer.innerHTML = text
 }
 
+export function getSelectedDirection() {
+    if(document.querySelector('#ida').checked){
+        return "ida"
+    }
+    else if (document.querySelector('#vuelta').checked){
+        return "vuelta"
+    }else{
+        return null
+    }
+}
+
 
 function toggleSettingsPanel() {
 
     if (isVisible) {
-        hideMenu()
+        hidePanel()
     } else {
-        showMenu()
+        showPanel()
     }
 }
 
@@ -43,14 +55,6 @@ function setLocalStorage(lng, lat) {
 }
 
 
-function getSelectedDirection() {
-    let direction
-    if (document.querySelector('#ida').checked) {
-        return 'ida'
-    } else {
-        return 'vuelta'
-    }
-}
 
 
 let map = L.map('map').setView([-38.8408, -62.1655], 10);
@@ -197,17 +201,17 @@ function swipeStart(e) {
 function swipeMenu(e) {
     let currentX = e.touches[0].clientX;
     if (currentX > initialX + window.innerWidth / 4) {
-        showMenu()
+        showPanel()
         body.removeEventListener("touchmove", swipeMenu)
     }
     else if (currentX < initialX - window.innerWidth / 4) {
-        hideMenu()
+        hidePanel()
         // body.removeEventListener("touchmove", swipeMenu)
     }
 }
 
 
-function hideMenu() {
+function hidePanel() {
     settingsPanel.style.left = "-100%";
     isVisible = false;
 
@@ -224,19 +228,9 @@ function hideMenu() {
     }
 }
 
-function showMenu(vaue) {
+function showPanel(vaue) {
     settingsPanel.style.left = "0%"
     isVisible = true
-}
-
-
-function toggleList() {
-    if (isVisible) {
-        hideMenu()
-    }
-    else {
-        showMenu()
-    }
 }
 
 

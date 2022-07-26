@@ -14,12 +14,7 @@ import {writeMainContainer} from './ui.js'
 
 export function update(lng, lat, direction) {
 
-    if(document.querySelector('#ida').checked){
-        direction = "ida"
-    }
-    else{
-        direction = "vuelta"
-    }
+
 
     // mainContainer.textContent = ""
     // loadingIcon.style.display = "none"//borrar    
@@ -43,33 +38,33 @@ export function update(lng, lat, direction) {
 
                 let segmentNumberBus = getSegmentNumber(bus_lng, bus_lat, direction)
                 let segmentNumberUser = getSegmentNumber(lng, lat, direction)
-                console.log(nearestBus,segmentNumberBus,segmentNumberUser,direction)
+                console.log(nearestBus.interno,segmentNumberBus,segmentNumberUser,direction)
 
 
                 if (segmentNumberBus != -1) {
                     getDirections(lng, lat, bus_lng, bus_lat, segmentNumberBus, segmentNumberUser, direction).then((data) => {
-                        console.log(data)
+                        
                         if(data != null){
 
                             displayData(data.distance, data.minutes, nearestBus)
                         }else{
                             loadingIcon.style.display = "none"
-                            writeMainContainer('No hay colectivos en camino')
+                            writeMainContainer("No hay colectivos en camino")
                         }
                     })
                 }
-                // else{
-                //     mainContainer.textContent = "No hay colectivos en camino."
-                // }
+                else{
+                    writeMainContainer("No hay colectivos en camino")
+                }
                 
 
             })
 
         } 
-        // else {
-        //     loadingIcon.style.display = "none"
-        //     mainContainer.textContent = "No hay colectivos en camino"
-        // }
+        else {
+            loadingIcon.style.display = "none"
+            writeMainContainer("No hay colectivos en camino")
+        }
     })
 }
 
@@ -84,7 +79,7 @@ function displayData(distance, minutes, nearestBus) {
     if(distance <= 0.2){
         m = '~'
     }
-    console.log(distance,minutes,nearestBus)
+    
 
     let time = new Date(nearestBus.dt_tracker)
     let time1 = new Date(time.setHours(time.getHours()-3))
@@ -105,7 +100,7 @@ function displayData(distance, minutes, nearestBus) {
     
     </div>
     `
-    
+
     writeMainContainer(text)
 }
 

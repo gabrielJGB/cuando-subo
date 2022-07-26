@@ -17,7 +17,7 @@ export function getSegmentNumber(lng, lat, direction) {
         longitude: lng
     };
 
-    console.log(direction)
+    
 
     if (direction == 'ida') {
     

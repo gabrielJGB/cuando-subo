@@ -1,4 +1,4 @@
-import timetables from './horarios.json' assert {type: 'json'};
+import timetables from './geojson/horarios.json' assert {type: 'json'};
 
 
 
@@ -19,6 +19,9 @@ function getSchedule(direction){
             }
             if(nextBus>currentTime){
                  let previousIndex = timetables.horarios_ida.indexOf(table) -1
+                if(previousIndex == -1){
+                    previousIndex = timetables.horarios_ida.length -1
+                }
                 let previous_d = timetables.horarios_ida[previousIndex].horas + ':' + timetables.horarios_ida[previousIndex].minutos
                 previousDeparture.push(previous_d)
                 nextDeparture.push(nextBus)
@@ -30,12 +33,17 @@ function getSchedule(direction){
             nextBus.setHours(table.horas)
             nextBus.setMinutes(table.minutos)
             nextBus.setSeconds('00')
+
+
             
             if(nextBus.getHours()<5){
                  nextBus.setDate(nextBus.getDate()+1)
             }
             if(nextBus>currentTime){
                 let previousIndex = timetables.horarios_vuelta.indexOf(table) -1
+                if(previousIndex == -1){
+                    previousIndex = timetables.horarios_vuelta.length -1
+                }
                 let previous_d = timetables.horarios_vuelta[previousIndex].horas + ':' + timetables.horarios_vuelta[previousIndex].minutos
                 previousDeparture.push(previous_d)
                 nextDeparture.push(nextBus)
