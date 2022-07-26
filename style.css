@@ -24,7 +24,7 @@ flex-direction: row;
 justify-content: space-between;
 align-items: center;
 /* background-color: #1e1e1e; */
-background-color: #e71010;;
+background-color: blue;
 }
 .reload-button{
 	background-color: #1e1e1e;
