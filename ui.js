@@ -1,6 +1,7 @@
 // if ('serviceWorker' in navigator) {
 //     navigator.serviceWorker.register('service-worker.js');
 // }
+
 import {
     update
 } from './main.js'
@@ -12,54 +13,41 @@ const loadingIcon = document.querySelector('.loading-icon')
 const list = document.querySelector('#list')
 const ida = document.querySelector('#ida')
 const vuelta = document.querySelector('#vuelta')
+let initialX,isVisible,c
 list.addEventListener('change', listChange)
 
 settingsButton.addEventListener('click', toggleSettingsPanel)
 settingsPanel.style.left = "-100%"
 
+export function writeMainContainer(text){
+    mainContainer.innerHTML = text
+}
+
 
 function toggleSettingsPanel() {
 
-    if (settingsPanel.style.left == "0px") {
-        // settingsButton.textContent = "Configuración"
-
-        settingsPanel.style.left = "-100%"
-
-        if (marker != null) {
-            let lat = marker._latlng.lat
-            let lng = marker._latlng.lng
-
-            let direction = getSelectedDirection()
-
-            if (sessionStorage.getItem("direction") == null || isSessionStorageUpdated(lng,lat,direction)) {
-                update(lng, lat)
-                setSessionStorage(lng, lat)   
-            }
-        }
-        
-    } else if(settingsPanel.style.left == "-100%"){
-
-        // settingsButton.textContent = "Cerrar configuración"
-        settingsPanel.style.left = "0px";
+    if (isVisible) {
+        hideMenu()
+    } else {
+        showMenu()
     }
 }
 
-function setSessionStorage(lng, lat) {
-    
+function setLocalStorage(lng, lat) {
+
     let direction = getSelectedDirection()
-    
-    sessionStorage.setItem("lat", lat);
-    sessionStorage.setItem("lng", lng);
-    sessionStorage.setItem("direction", direction);
+
+    localStorage.setItem("lat", lat);
+    localStorage.setItem("lng", lng);
+    localStorage.setItem("direction", direction);
 }
 
 
-function getSelectedDirection(){
+function getSelectedDirection() {
     let direction
-    if(document.querySelector('#ida').checked){
+    if (document.querySelector('#ida').checked) {
         return 'ida'
-    }
-    else{
+    } else {
         return 'vuelta'
     }
 }
@@ -68,13 +56,11 @@ function getSelectedDirection(){
 let map = L.map('map').setView([-38.8408, -62.1655], 10);
 let marker = null
 
-
-
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-map.on('click', onMapClick);
+map.on('click', onMapClick)
 
 function onMapClick(e) {
     let lat = e.latlng.lat
@@ -88,7 +74,7 @@ export function setMarker(lat, lng) {
         marker.remove()
     }
     map.setView([lat, lng], 17)
-    marker = L.marker([lat, lng]).addTo(map);
+    marker = L.marker([lat, lng]).addTo(map)
 }
 
 const radioOptions = document.querySelector('.radio-toolbar')
@@ -96,16 +82,16 @@ radioOptions.addEventListener('change', handleSelectedOption)
 
 function handleSelectedOption() {
     if (ida.checked) {
-        
+
         fillList(ida.id)
     } else if (vuelta.checked) {
-        
+
         fillList(vuelta.id)
     }
 
 }
 
-import file from './geojson/paradas.json' assert { type: 'json' };
+import file from './geojson/paradas.json'assert {type: 'json'};
 
 function fillList(direction1) {
 
@@ -164,13 +150,13 @@ function listChange(e) {
 getSessionStorage()
 
 function getSessionStorage() {
-    if (sessionStorage.getItem("direction") != null) {
+    if (localStorage.getItem("direction") != null) {
         loadingIcon.style.display = "block"
-        let lng = sessionStorage.getItem("lng")
-        let lat = sessionStorage.getItem("lat")
-        let direction = sessionStorage.getItem("direction")
-        if(direction != null){
-           document.querySelector(`#${direction}`).checked = true
+        let lng = localStorage.getItem("lng")
+        let lat = localStorage.getItem("lat")
+        let direction = localStorage.getItem("direction")
+        if (direction != null) {
+            document.querySelector(`#${direction}`).checked = true
         }
         fillList(direction)
         update(lng, lat, direction)
@@ -187,9 +173,80 @@ function getSessionStorage() {
 }
 
 
-function isSessionStorageUpdated(lng,lat,direction) {
-    let prev_lng = sessionStorage.getItem("lng")
-    let prev_lat = sessionStorage.getItem("lat")
-    let prev_direction = sessionStorage.getItem("direction")
+function isSessionStorageUpdated(lng, lat, direction) {
+    let prev_lng = localStorage.getItem("lng")
+    let prev_lat = localStorage.getItem("lat")
+    let prev_direction = localStorage.getItem("direction")
     return (prev_lat != lat || prev_lng != lng || prev_direction != direction)
 }
+
+
+let body  = document.querySelector('body')
+body.addEventListener("touchstart", swipeStart)
+
+
+function swipeStart(e) {
+        
+        if(!e.target.classList.contains('leaflet-container') && !e.target.classList.contains('leaflet-touch')&& !e.target.classList.contains('leaflet-retina')&& !e.target.classList.contains('leaflet-safari')&& !e.target.classList.contains('leaflet-fade-anim')&& !e.target.classList.contains('leaflet-grab')&& !e.target.classList.contains('leaflet-touch-drag')&& !e.target.classList.contains('leaflet-touch-zoom')){
+
+            initialX = e.touches[0].clientX
+            body.addEventListener("touchmove", swipeMenu)
+        }
+
+}
+function swipeMenu(e) {
+    let currentX = e.touches[0].clientX;
+    if (currentX > initialX + window.innerWidth / 4) {
+        showMenu()
+        body.removeEventListener("touchmove", swipeMenu)
+    }
+    else if (currentX < initialX - window.innerWidth / 4) {
+        hideMenu()
+        // body.removeEventListener("touchmove", swipeMenu)
+    }
+}
+
+
+function hideMenu() {
+    settingsPanel.style.left = "-100%";
+    isVisible = false;
+
+    if (marker != null) {
+        let lat = marker._latlng.lat
+        let lng = marker._latlng.lng
+
+        let direction = getSelectedDirection()
+
+        if (localStorage.getItem("direction") == null || isSessionStorageUpdated(lng, lat, direction)) {
+            update(lng, lat)
+            setLocalStorage(lng, lat)
+        }
+    }
+}
+
+function showMenu(vaue) {
+    settingsPanel.style.left = "0%"
+    isVisible = true
+}
+
+
+function toggleList() {
+    if (isVisible) {
+        hideMenu()
+    }
+    else {
+        showMenu()
+    }
+}
+
+
+const reloadButton = document.querySelector('.reload-button')
+reloadButton.addEventListener('click',()=>{
+    let lat = marker._latlng.lat
+    let lng = marker._latlng.lng
+
+    setLocalStorage(lng, lat)
+    document.location.reload()
+})
+
+

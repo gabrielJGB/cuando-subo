@@ -8,7 +8,33 @@
 <body>
 	
 
- 
+	
+
+ <script src="js/mobile-swipe-menu.min.js"></script>
+<script>
+    var mobileMenu = new MobileSwipeMenu('#menu', {
+        mode: 'right',
+        width: window.innerWidth / 1.15,
+        enableBodyHook: true,
+        events: {
+            opened: function () {
+            },
+            closed: function () {
+            },
+            drag: function (swipe) {
+            }
+        }
+    });
+    document.getElementById('openMenu').addEventListener('click', function () {
+        mobileMenu.openMenu();
+    });
+    document.getElementById('closeMenu').addEventListener('click', function () {
+        mobileMenu.closeMenu();
+    });
+    document.getElementById('toggleMenu').addEventListener('click', function () {
+        mobileMenu.toggleMenu();
+    });
+</script>
 	
 	<script src="./test.js" type="module"></script>
 </body>
