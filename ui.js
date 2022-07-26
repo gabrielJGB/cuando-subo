@@ -15,7 +15,7 @@ const ida = document.querySelector('#ida')
 const vuelta = document.querySelector('#vuelta')
 let initialX,isVisible,c
 list.addEventListener('change', listChange)
-
+loadingIcon.style.display = 'none'
 settingsButton.addEventListener('click', toggleSettingsPanel)
 settingsPanel.style.left = "-100%"
 
