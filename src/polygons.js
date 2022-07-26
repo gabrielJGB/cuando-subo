@@ -17,25 +17,22 @@ export function getSegmentNumber(lng, lat, direction) {
         longitude: lng
     };
 
-    
+    let arrayPolygons
 
-    if (direction == 'ida') {
-    
-        for (let i = 0; i < arrayPolygonsIda.length; i++) {
+    if(direction == 'ida'){
+        arrayPolygons = arrayPolygonsIda
+    }else{
+        arrayPolygons = arrayPolygonsVuelta
+    }
 
-            if (geolib.isPointInPolygon(point, arrayPolygonsIda[i])) {
-                return (i)
-            }
+
+    for (let i = 0; i < arrayPolygons.length; i++) {
+
+        if (geolib.isPointInPolygon(point, arrayPolygons[i])) {
+            return (i)
         }
     }
-    else if(direction == 'vuelta'){
-    
-    	for (let i = 0; i < arrayPolygonsVuelta.length; i++) {
-            if (geolib.isPointInPolygon(point, arrayPolygonsVuelta[i])) {
-                return (i)
-            }
-        }
-    }
+  
     return -1
 }
 

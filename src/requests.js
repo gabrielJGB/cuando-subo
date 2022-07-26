@@ -106,11 +106,12 @@ export async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPoi
 
 
 export async function getCurrentBuses() {
-    
-    const response = await fetch('https://api.allorigins.win/get?url=' +encodeURIComponent('https://www.gpsbahia.com.ar/frontend/track_data/3.json')+ '&rand=' + Math.random() )
+    //  '&rand=' + Math.random()
+    let url = 'https://www.gpsbahia.com.ar/frontend/track_data/3.json'
+    const response = await fetch('https://corsproxy.io/?'+encodeURIComponent(url))
     const parsed = await response.json()
     
-    return JSON.parse(parsed.contents)
+    return parsed
     
 }
 

@@ -13,6 +13,11 @@ const loadingIcon = document.querySelector('.loading-icon')
 const list = document.querySelector('#list')
 const ida = document.querySelector('#ida')
 const vuelta = document.querySelector('#vuelta')
+const next = document.querySelector('.next')
+const previous = document.querySelector('.previous')
+const c1 = document.querySelector('.c1')
+
+
 let direction = getSelectedDirection()
 let initialX,isVisible,c
 list.addEventListener('change', listChange)
@@ -22,6 +27,18 @@ settingsPanel.style.left = "-100%"
 
 export function writeMainContainer(text){
     mainContainer.innerHTML = text
+}
+
+export function writeSchedules(direction,schedules){
+    document.querySelector('.timetables').style.display = 'flex'
+    if(direction == "ida"){
+            c1.textContent = "Parque de Mayo"
+    }else{
+            c1.textContent = "Terminal Punta Alta"
+    }
+
+    next.textContent = schedules.next
+    previous.textContent = schedules.previous
 }
 
 export function getSelectedDirection() {
@@ -77,7 +94,7 @@ export function setMarker(lat, lng) {
     if (marker != null) {
         marker.remove()
     }
-    map.setView([lat, lng], 17)
+    map.setView([lat, lng], 18)
     marker = L.marker([lat, lng]).addTo(map)
 }
 
@@ -165,11 +182,7 @@ function getSessionStorage() {
         fillList(direction)
         update(lng, lat, direction)
         setMarker(lat, lng)
-        return {
-            lng,
-            lat,
-            direction
-        }
+
     } else {
 
         // mainContainer.textContent = 'Selecciona la parada y el sentido del viaje en la configuración'
@@ -191,7 +204,7 @@ body.addEventListener("touchstart", swipeStart)
 
 function swipeStart(e) {
         
-        if(!e.target.classList.contains('leaflet-container') && !e.target.classList.contains('leaflet-touch')&& !e.target.classList.contains('leaflet-retina')&& !e.target.classList.contains('leaflet-safari')&& !e.target.classList.contains('leaflet-fade-anim')&& !e.target.classList.contains('leaflet-grab')&& !e.target.classList.contains('leaflet-touch-drag')&& !e.target.classList.contains('leaflet-touch-zoom')){
+        if(!e.target.classList.contains('leaflet-container') && !e.target.classList.contains('leaflet-touch')&& !e.target.classList.contains('leaflet-retina')&& !e.target.classList.contains('leaflet-safari')&& !e.target.classList.contains('leaflet-fade-anim')&& !e.target.classList.contains('leaflet-grab')&& !e.target.classList.contains('leaflet-touch-drag')&& !e.target.classList.contains('leaflet-touch-zoom')&& !e.target.classList.contains('leaflet-marker-icon')){
 
             initialX = e.touches[0].clientX
             body.addEventListener("touchmove", swipeMenu)
@@ -222,7 +235,8 @@ function hidePanel() {
         let direction = getSelectedDirection()
 
         if (localStorage.getItem("direction") == null || isSessionStorageUpdated(lng, lat, direction)) {
-            update(lng, lat)
+            
+            update(lng, lat,direction)
             setLocalStorage(lng, lat)
         }
     }

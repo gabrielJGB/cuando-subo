@@ -8,13 +8,14 @@
 		<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
 		integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
 		crossorigin=""></script>
-		<link rel="shortcut icon" href="./images/icon.ico" type="image/x-icon">
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
 		<title>Cuando llega</title>
 		<link rel="stylesheet" type="text/css" href="./style.css">
 	</head>
 	<body>
 		<div class="navbar">
-			<button type="button" class="settings-button">☰</button>
+			<button type="button" class="settings-button">&#9776;</button>
 			<button type="button" class="reload-button">&#8635;</button>
 		</div>
 		<div class="container">
@@ -49,15 +50,28 @@
 				
 			</div>
 			<div class="main-container">
-				<!-- <div class="text1">El proximo colectvo llegará a tu ubicación en:</div>
-				<div><span class="minutes"></span> minutos</div>
-				<br>
-				<div>Interno: <span class="bus-id"></span> </div>
-				<div>Ubicación actual: <span class="bus-location">Humberto 555</span></div>
-				<div>Última actualización: <span class="update-time"></span></div>
-				<div>Distancia: <span class="distance"></span> km</div> -->
+	
 				<div>Selecciona la parada y el sentido del viaje en el menú.</div>
+
 			</div>
+
+			<div class="timetables">
+				<div class="timetables-title">
+					<div> Horarios de salida</div> 
+					<div class="c1"></div>
+				</div>
+				<div class="timetables-1">
+					<div>
+						<span>Anterior</span>
+						<div class="previous"></div>
+					</div>
+					<div>
+						<span>Siguiente</span>
+						<div class="next"></div>
+					</div>
+				</div>
+			</div>
+			
 			
 		</div>
 		<div class="loading-icon">
@@ -73,10 +87,8 @@
 			<div class="loading-text">Cargando...</div>
 		</div>
 		
-		<!-- <script src="//cdn.jsdelivr.net/npm/eruda"></script> -->
-		<!-- <script>eruda.init();</script> -->
-		<script src="https://unpkg.com/geolib@3.3.1/lib/index.js"></script>
-		<script src="./main.js" defer type="module"></script>
-		<script src="./ui.js" defer type="module"></script>
+
+		<script src="https://unpkg.com/geolib@3.3.1/lib/index.js"></script>		
+		<script src="./src/main.js" type="module"></script>
 	</body>
 </html>

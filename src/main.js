@@ -5,8 +5,8 @@
 import  {getSegmentNumber} from './polygons.js'
 import {getDirections,getCurrentBuses,getBusArray,getBusMatrix,getNearestBusIndex} from './requests.js'
 import timetables from './geojson/horarios.json' assert {type: 'json'};
-import {writeMainContainer} from './ui.js'
-
+import {writeMainContainer,writeSchedules} from './ui.js'
+import {getSchedule} from './test.js'
 // const mainContainer = document.querySelector('.main-container')
 
 // loadingIcon.style.display = "none"
@@ -19,8 +19,14 @@ export function update(lng, lat, direction) {
     // mainContainer.textContent = ""
     // loadingIcon.style.display = "none"//borrar    
     const loadingIcon = document.querySelector('.loading-icon')
-    loadingIcon.style.display = "block"
+    document.querySelector('.timetables').style.display = 'none'
+    writeMainContainer(' ')
+    
 
+    // loadingIcon.style.display = "none"  
+
+
+    loadingIcon.style.display = "block"
     getCurrentBuses().then(response => {
         let busArray = getBusArray(response, direction)
                 
@@ -49,12 +55,15 @@ export function update(lng, lat, direction) {
                             displayData(data.distance, data.minutes, nearestBus)
                         }else{
                             loadingIcon.style.display = "none"
-                            writeMainContainer("No hay colectivos en camino")
+                            writeMainContainer("No hay colectivos en camino. Intentá de nuevo en unos minutos")
+                            writeSchedules(direction,getSchedule(direction))
+
                         }
                     })
                 }
                 else{
-                    writeMainContainer("No hay colectivos en camino")
+                    writeMainContainer("No hay colectivos en camino. Intentá de nuevo en unos minutos")
+                    writeSchedules(direction,getSchedule(direction))
                 }
                 
 
@@ -63,7 +72,8 @@ export function update(lng, lat, direction) {
         } 
         else {
             loadingIcon.style.display = "none"
-            writeMainContainer("No hay colectivos en camino")
+            writeMainContainer("No hay colectivos en camino. Intentá de nuevo en unos minutos")
+            writeSchedules(direction,getSchedule(direction))
         }
     })
 }
@@ -105,60 +115,6 @@ function displayData(distance, minutes, nearestBus) {
 }
 
 
-function getSchedule(direction){
-    let nextDeparture = []
-    let previousDeparture = []
-    let currentTime = new Date().setMinutes(new Date().getMinutes()+1)
-
-    if(direction =="ida"){
-        timetables.horarios_ida.forEach(table=>{    
-            let nextBus = new Date()
-            nextBus.setHours(table.horas)
-            nextBus.setMinutes(table.minutos)
-            nextBus.setSeconds('00')
-            
-            if(nextBus.getHours()<5){
-                 nextBus.setDate(nextBus.getDate()+1)
-            }
-            if(nextBus>currentTime){
-                 let previousIndex = timetables.horarios_ida.indexOf(table) -1
-                let previous_d = timetables.horarios_ida[previousIndex].horas + ':' + timetables.horarios_ida[previousIndex].minutos
-                previousDeparture.push(previous_d)
-                nextDeparture.push(nextBus)
-            }
-        })
-    }else{
-        timetables.horarios_vuelta.forEach(table=>{    
-            let nextBus = new Date()
-            nextBus.setHours(table.horas)
-            nextBus.setMinutes(table.minutos)
-            nextBus.setSeconds('00')
-            
-            if(nextBus.getHours()<5){
-                 nextBus.setDate(nextBus.getDate()+1)
-            }
-            if(nextBus>currentTime){
-                let previousIndex = timetables.horarios_vuelta.indexOf(table) -1
-                let previous_d = timetables.horarios_vuelta[previousIndex].horas + ':' + timetables.horarios_vuelta[previousIndex].minutos
-                previousDeparture.push(previous_d)
-                nextDeparture.push(nextBus)
-            }
-        })
-    }
-
-    let hours = String(nextDeparture[0].getHours()).padStart(2,0)
-    let minutes = String(nextDeparture[0].getMinutes()).padStart(2,0)
-    let next = hours+':'+minutes
-    /*
-    si: diferencia entre (tiempoactual - tiempoPrevio) > 10
-        tonce: 
-
-        if()
-
-    */
-    let previous = previousDeparture[0]
-    return {previous,next}
-}
 
 
 
