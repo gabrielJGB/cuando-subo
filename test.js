@@ -2,7 +2,7 @@ import timetables from './horarios.json' assert {type: 'json'};
 
 
 
-function showNext(direction){
+function getSchedule(direction){
     let nextDeparture = []
     let previousDeparture = []
     let currentTime = new Date().setMinutes(new Date().getMinutes()+1)
@@ -58,4 +58,4 @@ function showNext(direction){
 }
 
 
-console.log(showNext('ida'))
+console.log(getSchedule('ida'))
