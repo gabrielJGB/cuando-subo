@@ -14,8 +14,8 @@ import {getSchedule} from './test.js'
 
 export function update(lng, lat, direction) {
 
-
-
+    
+    
     // mainContainer.textContent = ""
     // loadingIcon.style.display = "none"//borrar    
     const loadingIcon = document.querySelector('.loading-icon')
@@ -25,18 +25,18 @@ export function update(lng, lat, direction) {
 
     // loadingIcon.style.display = "none"  
 
-
+    // loadingIcon.style.display = "none"
     loadingIcon.style.display = "block"
     getCurrentBuses().then(response => {
         let busArray = getBusArray(response, direction)
                 
         if (busArray.length > 0) {
 
-            getBusMatrix(busArray, lng, lat).then(matrix => {
-
+            getBusMatrix(busArray, lng.toString(), lat.toString()).then(matrix => {
                 loadingIcon.style.display = "none"
                 let nearestBusIndex = getNearestBusIndex(matrix)
                 let nearestBus = busArray[nearestBusIndex]
+                
 
 
                 let bus_lng = nearestBus.lng
@@ -44,7 +44,7 @@ export function update(lng, lat, direction) {
 
                 let segmentNumberBus = getSegmentNumber(bus_lng, bus_lat, direction)
                 let segmentNumberUser = getSegmentNumber(lng, lat, direction)
-                console.log(nearestBus.interno,segmentNumberBus,segmentNumberUser,direction)
+                // console.log(nearestBus.interno,segmentNumberBus,segmentNumberUser,direction)
 
 
                 if (segmentNumberBus != -1) {

@@ -72,7 +72,7 @@ transition: 0.5s all;
 .settings-group{
     background-color: #1e1e1e;
     color: #e3e3e3;
-    margin: 0 6px 8px 6px;
+    margin: 0 6px 15px 6px;
     box-shadow: 0 0 5px black;
     padding: 5px;
 /*   background-color: #202020;
@@ -102,9 +102,7 @@ color: #efefef;*/
     margin: 0 10px;
 
 }
-.location-settings{
-height: -webkit-fill-available;
-}
+
 .settings-box{
 overflow: auto;
 }
@@ -115,7 +113,7 @@ overflow: auto;
 	flex-direction: column;
 	justify-content: center;
 	gap: 7px;
-	margin: 7px 0;
+	margin: 7px 0 0 0;
 }
 
 .buttons button,.buttons select{
@@ -139,8 +137,10 @@ color: black;
 	color: black;
 }
 #map {
-height: 60vh;
+margin-top: 10px;
+height: 40vh;
 width: 100%;
+transition: height 0.4s cubic-bezier(0.65, 0.05, 0.36, 1) 0s;
 }
 /*  -- radio buttons -- */
 .radio-toolbar {

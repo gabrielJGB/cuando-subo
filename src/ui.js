@@ -19,22 +19,22 @@ const c1 = document.querySelector('.c1')
 
 
 let direction = getSelectedDirection()
-let initialX,isVisible,c
+let initialX, isVisible, c
 list.addEventListener('change', listChange)
 loadingIcon.style.display = 'none'
 settingsButton.addEventListener('click', toggleSettingsPanel)
 settingsPanel.style.left = "-100%"
 
-export function writeMainContainer(text){
+export function writeMainContainer(text) {
     mainContainer.innerHTML = text
 }
 
-export function writeSchedules(direction,schedules){
+export function writeSchedules(direction, schedules) {
     document.querySelector('.timetables').style.display = 'flex'
-    if(direction == "ida"){
-            c1.textContent = "Parque de Mayo"
-    }else{
-            c1.textContent = "Terminal Punta Alta"
+    if (direction == "ida") {
+        c1.textContent = "Parque de Mayo"
+    } else {
+        c1.textContent = "Terminal Punta Alta"
     }
 
     next.textContent = schedules.next
@@ -42,12 +42,11 @@ export function writeSchedules(direction,schedules){
 }
 
 export function getSelectedDirection() {
-    if(document.querySelector('#ida').checked){
+    if (document.querySelector('#ida').checked) {
         return "ida"
-    }
-    else if (document.querySelector('#vuelta').checked){
+    } else if (document.querySelector('#vuelta').checked) {
         return "vuelta"
-    }else{
+    } else {
         return null
     }
 }
@@ -198,28 +197,28 @@ function isSessionStorageUpdated(lng, lat, direction) {
 }
 
 
-let body  = document.querySelector('body')
+let body = document.querySelector('body')
 body.addEventListener("touchstart", swipeStart)
 
 
 function swipeStart(e) {
-        
-        if(!e.target.classList.contains('leaflet-container') && !e.target.classList.contains('leaflet-touch')&& !e.target.classList.contains('leaflet-retina')&& !e.target.classList.contains('leaflet-safari')&& !e.target.classList.contains('leaflet-fade-anim')&& !e.target.classList.contains('leaflet-grab')&& !e.target.classList.contains('leaflet-touch-drag')&& !e.target.classList.contains('leaflet-touch-zoom')&& !e.target.classList.contains('leaflet-marker-icon')){
 
-            initialX = e.touches[0].clientX
-            body.addEventListener("touchmove", swipeMenu)
-        }
+    if (!e.target.classList.contains('leaflet-container') && !e.target.classList.contains('leaflet-touch') && !e.target.classList.contains('leaflet-retina') && !e.target.classList.contains('leaflet-safari') && !e.target.classList.contains('leaflet-fade-anim') && !e.target.classList.contains('leaflet-grab') && !e.target.classList.contains('leaflet-touch-drag') && !e.target.classList.contains('leaflet-touch-zoom') && !e.target.classList.contains('leaflet-marker-icon')) {
+
+        initialX = e.touches[0].clientX
+        body.addEventListener("touchmove", swipeMenu)
+    }
 
 }
+
 function swipeMenu(e) {
     let currentX = e.touches[0].clientX;
     if (currentX > initialX + window.innerWidth / 4) {
         showPanel()
         body.removeEventListener("touchmove", swipeMenu)
-    }
-    else if (currentX < initialX - window.innerWidth / 4) {
+    } else if (currentX < initialX - window.innerWidth / 4) {
         hidePanel()
-        // body.removeEventListener("touchmove", swipeMenu)
+            // body.removeEventListener("touchmove", swipeMenu)
     }
 }
 
@@ -235,8 +234,8 @@ function hidePanel() {
         let direction = getSelectedDirection()
 
         if (localStorage.getItem("direction") == null || isSessionStorageUpdated(lng, lat, direction)) {
-            
-            update(lng, lat,direction)
+
+            update(lng, lat, direction)
             setLocalStorage(lng, lat)
         }
     }
@@ -249,12 +248,164 @@ function showPanel(vaue) {
 
 
 const reloadButton = document.querySelector('.reload-button')
-reloadButton.addEventListener('click',()=>{
+reloadButton.addEventListener('click', () => {
     let lat = marker._latlng.lat
     let lng = marker._latlng.lng
 
     setLocalStorage(lng, lat)
     document.location.reload()
 })
+
+
+const mapBox = document.querySelector('#map')
+const toggleMapButton = document.querySelector('.toggle-map-button')
+toggleMapButton.addEventListener('click', toggleMap)
+mapBox.style.height = "0"
+
+function toggleMap() {
+
+    if (mapBox.style.height == "40vh") {
+        toggleMapButton.textContent = "Mostrar mapa"
+        mapBox.style.height = "0"
+
+    } else {
+        toggleMapButton.textContent = "Ocultar mapa"
+        mapBox.style.height = "40vh"
+
+    }
+
+}
+
+const locationList = document.querySelector('.location-list')
+const saveButton = document.querySelector('.save-button')
+saveButton.addEventListener('click', saveLocation)
+
+function saveLocation() {
+    let location_name = list.options[list.selectedIndex].text
+    let location_coords = list.options[list.selectedIndex].value
+    let direction = getSelectedDirection()
+    
+
+    if (location_coords != 'Seleccionar parada' && location_name && 'Seleccionar parada' && direction != null) {
+        
+
+        drawLocation(direction,location_name,location_coords)
+        saveLocationToLocalStorage(location_coords, location_name, direction)
+
+    } else {
+        alert('Seleccionar ubicacion y sentido')
+    }
+}
+
+function drawLocation(direction,location_name,location_coords){
+    let div = document.createElement('DIV')
+    let dir = ''
+    if (direction == 'ida') {
+            dir = 'Bahía Blanca &#8594; Punta Alta'
+        } else {
+            dir = 'Punta Alta &#8594; Bahía Blanca'
+    }
+
+    div.className = "location"
+    div.dataset.coords = location_coords
+    div.dataset.direction = direction
+    div.innerHTML = `
+        
+        <h3>Ubicacion 1</h3>
+        <span><span class="t">Sentido</span>: <span class="dir">${dir}</span></span>
+        <span><span class="t">Ubicación</span>: <span class="dir">${location_name}</span></span>
+        <div class="location-buttons">
+            <button class="delete-button">Borrar</button>
+            <button class="load-button">Cargar</button>
+        </div> 
+    `
+    div.querySelector('.load-button').addEventListener('click',loadLocation)
+    div.querySelector('.delete-button').addEventListener('click',deleteLocation)
+
+    locationList.appendChild(div)
+        
+}
+
+
+
+function saveLocationToLocalStorage(location_coords, location_name, direction) {
+
+    let location = {
+        "location_name": location_name,
+        "location_coords":location_coords,
+        "direction":direction
+    }
+
+
+    let locationsArray;
+
+    if (localStorage.getItem('locations') === null) {
+        locationsArray = []
+    } else {
+     
+         locationsArray = JSON.parse(localStorage.getItem('locations'))
+     }
+     
+     locationsArray.push(location);     
+     localStorage.setItem('locations', JSON.stringify(locationsArray))
+}
+
+getLocationsFromLocalStorage()
+
+function getLocationsFromLocalStorage(){
+    let locationsArray = JSON.parse(localStorage.getItem('locations'))
+    if(locationsArray != null){
+        locationList.textContent = ''
+        locationsArray.forEach(location=>{
+            drawLocation(location.direction,location.location_name,location.location_coords)
+        })
+    }else{
+        locationList.textContent = "( Vacío )"
+    }
+}
+
+
+function loadLocation(){
+    let location_coords = JSON.parse(this.parentNode.parentNode.dataset.coords)
+    let lng = location_coords.lng
+    let lat = location_coords.lat
+    let direction = this.parentNode.parentNode.dataset.direction
+
+    update(lat,lng,direction)
+    hidePanel()
+}
+
+function deleteLocation(){
+    let location_coords = this.parentNode.parentNode.dataset.coords
+    let direction = this.parentNode.parentNode.dataset.direction 
+
+    let locationsArray = JSON.parse(localStorage.getItem('locations'))
+    
+    locationsArray.forEach(location=>{
+        if(location.direction == direction && location.location_coords == location_coords)
+            locationsArray.splice(locationsArray.indexOf(location),1)
+    })
+
+    localStorage.setItem('locations', JSON.stringify(locationsArray))
+    locationList.textContent = ''
+    getLocationsFromLocalStorage()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
