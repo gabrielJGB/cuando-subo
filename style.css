@@ -274,3 +274,79 @@ font-size: 18px;
 	font-size: 22px;
 	margin-bottom: 5px;
 }
+
+
+
+
+
+
+
+
+
+
+.location-buttons{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 10px;
+	gap: 20px;
+}
+.location-buttons button {
+	padding: 12px 5px;
+	border: 0;
+	border-radius: 4px;
+    width: -webkit-fill-available;
+    font-size: 17px;
+    cursor: pointer;
+}
+.delete-button{
+	background-color: #9d2222;
+	color: white;
+}
+
+.load-button{
+	background-color: #074d07;
+	color: white;
+}
+
+.location .t{
+	text-decoration: underline;
+}
+
+.location{
+    padding: 10px 7px;
+    text-align: initial;
+    background-color: #101010;
+    margin-top: 13px;
+    color: #e5e5e5;
+    /* border: dashed 2px #000000; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 0 10px black;*/
+}
+.save-button{
+	width: 100%;
+	    margin-top: 10px;
+padding: 10px;
+border-radius: 5px;
+font-size: 17px;
+background-color: #1893f7;
+border: 0;
+color: white;
+cursor: pointer;
+}
+.location-list{
+	margin-top: 20px;
+
+text-align: center;
+font-size: 18px;
+color: #7a7a7a;
+}
+.toggle-map-button{
+	font-size: 20px;
+text-align: center;
+padding: 11px 0;
+background-color: #313131;
+border-radius: 5px;
+cursor: pointer;
+
+}

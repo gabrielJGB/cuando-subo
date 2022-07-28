@@ -178,9 +178,14 @@ function getSessionStorage() {
         if (direction != null) {
             document.querySelector(`#${direction}`).checked = true
         }
+
+
         fillList(direction)
         update(lng, lat, direction)
         setMarker(lat, lng)
+
+        document.querySelector('#list').value = JSON.stringify({"lat":parseFloat(lng),"lng":parseFloat(lat)})
+        // document.querySelector('#list').value = JSON.stringify({})
 
     } else {
 
@@ -287,8 +292,9 @@ function saveLocation() {
     
 
     if (location_coords != 'Seleccionar parada' && location_name && 'Seleccionar parada' && direction != null) {
-        
-
+        if(locationList.textContent == '( Vacío )'){
+            locationList.textContent = ''
+        }
         drawLocation(direction,location_name,location_coords)
         saveLocationToLocalStorage(location_coords, location_name, direction)
 
@@ -311,7 +317,7 @@ function drawLocation(direction,location_name,location_coords){
     div.dataset.direction = direction
     div.innerHTML = `
         
-        <h3>Ubicacion 1</h3>
+        <h3>Ubicacion</h3>
         <span><span class="t">Sentido</span>: <span class="dir">${dir}</span></span>
         <span><span class="t">Ubicación</span>: <span class="dir">${location_name}</span></span>
         <div class="location-buttons">
@@ -354,11 +360,16 @@ getLocationsFromLocalStorage()
 
 function getLocationsFromLocalStorage(){
     let locationsArray = JSON.parse(localStorage.getItem('locations'))
+    locationList.textContent = ' '
+
     if(locationsArray != null){
-        locationList.textContent = ''
-        locationsArray.forEach(location=>{
-            drawLocation(location.direction,location.location_name,location.location_coords)
-        })
+        if(locationsArray.length !=0){
+            locationsArray.forEach(location=>{
+                drawLocation(location.direction,location.location_name,location.location_coords)
+            })
+        }else{
+            locationList.textContent = "( Vacío )"
+        }
     }else{
         locationList.textContent = "( Vacío )"
     }
