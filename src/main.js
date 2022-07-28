@@ -1,10 +1,10 @@
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('service-worker.js');
-// }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+}
 
 import  {getSegmentNumber} from './polygons.js'
 import {getDirections,getCurrentBuses,getBusArray,getBusMatrix,getNearestBusIndex} from './requests.js'
-import timetables from './geojson/horarios.json' assert {type: 'json'};
+import timetables from './geojson/horarios_invierno.json' assert {type: 'json'};
 import {writeMainContainer,writeSchedules} from './ui.js'
 import {getSchedule} from './test.js'
 // const mainContainer = document.querySelector('.main-container')
@@ -36,8 +36,6 @@ export function update(lng, lat, direction) {
                 loadingIcon.style.display = "none"
                 let nearestBusIndex = getNearestBusIndex(matrix)
                 let nearestBus = busArray[nearestBusIndex]
-                
-
 
                 let bus_lng = nearestBus.lng
                 let bus_lat = nearestBus.lat
@@ -55,14 +53,15 @@ export function update(lng, lat, direction) {
                             displayData(data.distance, data.minutes, nearestBus)
                         }else{
                             loadingIcon.style.display = "none"
-                            writeMainContainer("No hay colectivos en camino. Intentá de nuevo en unos minutos")
+                            writeMainContainer("No hay colectivos en camino.<br>Intentá de nuevo en unos minutos.")
                             writeSchedules(direction,getSchedule(direction))
 
                         }
                     })
                 }
                 else{
-                    writeMainContainer("No hay colectivos en camino. Intentá de nuevo en unos minutos")
+                    loadingIcon.style.display = "none"
+                    writeMainContainer("No hay colectivos en camino.<br>Intentá de nuevo en unos minutos.")
                     writeSchedules(direction,getSchedule(direction))
                 }
                 
@@ -72,7 +71,7 @@ export function update(lng, lat, direction) {
         } 
         else {
             loadingIcon.style.display = "none"
-            writeMainContainer("No hay colectivos en camino. Intentá de nuevo en unos minutos")
+            writeMainContainer("No hay colectivos en camino.<br>Intentá de nuevo en unos minutos.")
             writeSchedules(direction,getSchedule(direction))
         }
     })

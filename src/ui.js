@@ -65,8 +65,8 @@ function setLocalStorage(lng, lat) {
 
     let direction = getSelectedDirection()
 
-    localStorage.setItem("lat", lat);
     localStorage.setItem("lng", lng);
+    localStorage.setItem("lat", lat);
     localStorage.setItem("direction", direction);
 }
 
@@ -83,13 +83,13 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 map.on('click', onMapClick)
 
 function onMapClick(e) {
-    let lat = e.latlng.lat
     let lng = e.latlng.lng
-    setMarker(lat, lng)
+    let lat = e.latlng.lat
+    setMarker(lng, lat)
 }
 
 
-export function setMarker(lat, lng) {
+export function setMarker(lng, lat) {
     if (marker != null) {
         marker.remove()
     }
@@ -144,8 +144,8 @@ function fillList(direction1) {
 
 function listChange(e) {
 
-    let lat = JSON.parse(list.options[list.selectedIndex].value).lat
     let lng = JSON.parse(list.options[list.selectedIndex].value).lng
+    let lat = JSON.parse(list.options[list.selectedIndex].value).lat
     setMarker(lng, lat)
 }
 
@@ -158,7 +158,7 @@ function listChange(e) {
 //         navigator.geolocation.getCurrentPosition((position) => {
 //             let lat = position.coords.latitude
 //             let lng = position.coords.longitude
-//             setMarker(lat, lng)
+//             setMarker(lng, lat)
 //         });
 //     } else {
 //         alert('No se puede obtener la ubicacion')
@@ -182,10 +182,10 @@ function getSessionStorage() {
 
         fillList(direction)
         update(lng, lat, direction)
-        setMarker(lat, lng)
+        setMarker(lng, lat)
 
-        document.querySelector('#list').value = JSON.stringify({"lat":parseFloat(lng),"lng":parseFloat(lat)})
-        // document.querySelector('#list').value = JSON.stringify({})
+        document.querySelector('#list').value = JSON.stringify({"lng":parseFloat(lng),"lat":parseFloat(lat)})
+        
 
     } else {
 
@@ -254,8 +254,8 @@ function showPanel(vaue) {
 
 const reloadButton = document.querySelector('.reload-button')
 reloadButton.addEventListener('click', () => {
-    let lat = marker._latlng.lat
     let lng = marker._latlng.lng
+    let lat = marker._latlng.lat
 
     setLocalStorage(lng, lat)
     document.location.reload()
@@ -381,25 +381,28 @@ function loadLocation(){
     let lng = location_coords.lng
     let lat = location_coords.lat
     let direction = this.parentNode.parentNode.dataset.direction
-
-    update(lat,lng,direction)
+    
+    update(lng,lat,direction)
     hidePanel()
 }
 
 function deleteLocation(){
-    let location_coords = this.parentNode.parentNode.dataset.coords
-    let direction = this.parentNode.parentNode.dataset.direction 
 
-    let locationsArray = JSON.parse(localStorage.getItem('locations'))
-    
-    locationsArray.forEach(location=>{
-        if(location.direction == direction && location.location_coords == location_coords)
-            locationsArray.splice(locationsArray.indexOf(location),1)
-    })
+    if(confirm('Estas seguro/a?')){
+        let location_coords = this.parentNode.parentNode.dataset.coords
+        let direction = this.parentNode.parentNode.dataset.direction 
 
-    localStorage.setItem('locations', JSON.stringify(locationsArray))
-    locationList.textContent = ''
-    getLocationsFromLocalStorage()
+        let locationsArray = JSON.parse(localStorage.getItem('locations'))
+        
+        locationsArray.forEach(location=>{
+            if(location.direction == direction && location.location_coords == location_coords)
+                locationsArray.splice(locationsArray.indexOf(location),1)
+        })
+
+        localStorage.setItem('locations', JSON.stringify(locationsArray))
+        locationList.textContent = ''
+        getLocationsFromLocalStorage()
+    }
 }
 
 
