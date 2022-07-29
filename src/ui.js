@@ -256,9 +256,11 @@ const reloadButton = document.querySelector('.reload-button')
 reloadButton.addEventListener('click', () => {
     let lng = marker._latlng.lng
     let lat = marker._latlng.lat
+    let direction = getSelectedDirection()
 
     setLocalStorage(lng, lat)
-    document.location.reload()
+    hidePanel()
+    update(lng,lat,direction)
 })
 
 

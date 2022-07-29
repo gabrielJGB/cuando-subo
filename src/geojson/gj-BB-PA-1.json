@@ -531,14 +531,17 @@
                 "duration": 3315.7000000000003
             },
             "way_points": [0, 28, 97, 106, 114, 127, 161, 352, 374, 379, 383, 388, 396],
-            "opacity": 0.9
+            "opacity": 0.9,
+            "shape": "Line",
+            "name": "Unnamed Layer",
+            "category": "default"
         },
         "geometry": {
             "type": "LineString",
             "coordinates": [
-                [-62.266461, -38.699115, 33.7],
-                [-62.267703, -38.699729, 33.8],
-                [-62.268721, -38.700194, 33.4],
+                [-62.269143, -38.700396],
+                [-62.269143, -38.700396],
+                [-62.269143, -38.700396],
                 [-62.270725, -38.701152, 31.5],
                 [-62.270793, -38.701179, 31.4],
                 [-62.270864, -38.701204, 31.4],
@@ -932,18 +935,23 @@
                 [-62.075043, -38.877323, 7],
                 [-62.073605, -38.877088, 7.3],
                 [-62.072189, -38.876857, 7.9],
-                [-62.071505, -38.876746, 8]
+                [-62.071614, -38.876764]
             ]
-        }
+        },
+        "id": "d82ce35f-b9be-489a-8047-0472846000c8"
     }, {
         "type": "Feature",
         "properties": {
-            "label": "-38.69912589896461, -62.26645231246949"
+            "label": "-38.69912589896461, -62.26645231246949",
+            "shape": "Marker",
+            "name": "Unnamed Layer",
+            "category": "default"
         },
         "geometry": {
             "type": "Point",
-            "coordinates": [-62.26645231246949, -38.69912589896461]
-        }
+            "coordinates": [-62.269143, -38.700396]
+        },
+        "id": "30984982-169b-48e8-93f8-79da4cd82a5c"
     }, {
         "type": "Feature",
         "properties": {
@@ -952,7 +960,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.26693511009217, -38.710006060516406]
-        }
+        },
+        "id": "b238efc2-66e0-420e-9fad-9ecb26a20a9d"
     }, {
         "type": "Feature",
         "properties": {
@@ -961,7 +970,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.246056795120246, -38.73375748835228]
-        }
+        },
+        "id": "bd9bc934-192c-40bf-9dc3-dce5753dcfd5"
     }, {
         "type": "Feature",
         "properties": {
@@ -970,7 +980,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.24180817604066, -38.73585811565829]
-        }
+        },
+        "id": "62352626-2ea0-41c9-96ec-29ffd6141cb9"
     }, {
         "type": "Feature",
         "properties": {
@@ -979,7 +990,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.234845161437995, -38.732209177683806]
-        }
+        },
+        "id": "31c26c15-4de9-4167-b7d2-c79b9fb5fa7d"
     }, {
         "type": "Feature",
         "properties": {
@@ -988,7 +1000,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.22754955291749, -38.72953093946066]
-        }
+        },
+        "id": "1ea625d5-8d9d-4d32-bb77-15f59dc99913"
     }, {
         "type": "Feature",
         "properties": {
@@ -997,7 +1010,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.216391563415534, -38.73959055200276]
-        }
+        },
+        "id": "384d55a6-3b23-48a6-a5e2-b73480d99753"
     }, {
         "type": "Feature",
         "properties": {
@@ -1006,7 +1020,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.08322525024415, -38.860429281432445]
-        }
+        },
+        "id": "190d352b-2e80-41f2-9829-af1d3bcf110e"
     }, {
         "type": "Feature",
         "properties": {
@@ -1015,7 +1030,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.08442687988282, -38.87857249314831]
-        }
+        },
+        "id": "e631231e-120e-4652-b8bb-5fd7658c08f5"
     }, {
         "type": "Feature",
         "properties": {
@@ -1024,7 +1040,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.0829463005066, -38.88363372318547]
-        }
+        },
+        "id": "2d5e921c-6789-4b7e-9aa6-260bd25b2979"
     }, {
         "type": "Feature",
         "properties": {
@@ -1033,7 +1050,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.07910537719727, -38.88331636291941]
-        }
+        },
+        "id": "ab0504f2-669a-4449-b3f0-57e74272e169"
     }, {
         "type": "Feature",
         "properties": {
@@ -1042,15 +1060,20 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.07539319992066, -38.881863168857905]
-        }
+        },
+        "id": "301e9b3f-3926-4b52-a6c7-628f5e20411f"
     }, {
         "type": "Feature",
         "properties": {
-            "label": "Ingeniero Luiggi, BA,Argentina"
+            "label": "Ingeniero Luiggi, BA,Argentina",
+            "shape": "Marker",
+            "name": "Unnamed Layer",
+            "category": "default"
         },
         "geometry": {
             "type": "Point",
-            "coordinates": [-62.07149863243104, -38.876768403214115]
-        }
+            "coordinates": [-62.071614, -38.876764]
+        },
+        "id": "dcbd62c2-e07e-42ea-b178-72bfaa86fc21"
     }]
 }

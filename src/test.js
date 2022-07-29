@@ -20,7 +20,7 @@ export function getSchedule(direction){
         nextBus.setMinutes(table.minutos)
         nextBus.setSeconds('00')
         
-        if(nextBus.getHours()<5){
+        if(nextBus.getHours()<5&&nextBus.getHours()>0){
              nextBus.setDate(nextBus.getDate()+1)
         }
         if(nextBus>currentTime){

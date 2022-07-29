@@ -393,12 +393,15 @@
                 "duration": 3130.6999999999994
             },
             "way_points": [0, 9, 15, 41, 220, 266, 297, 348, 360, 368, 380],
-            "opacity": 0.9
+            "opacity": 0.9,
+            "shape": "Line",
+            "name": "Unnamed Layer",
+            "category": "default"
         },
         "geometry": {
             "type": "LineString",
             "coordinates": [
-                [-62.070788, -38.877888, 6.5],
+                [-62.071195, -38.877957],
                 [-62.071861, -38.878069, 6.3],
                 [-62.073285, -38.878307, 6.4],
                 [-62.074731, -38.878549, 6.9],
@@ -780,16 +783,21 @@
                 [-62.267887, -38.701262, 31.8],
                 [-62.268157, -38.700932, 31.9]
             ]
-        }
+        },
+        "id": "fc266396-ea7b-4482-aba9-889397c4d518"
     }, {
         "type": "Feature",
         "properties": {
-            "label": "899 Mitre, BA,Argentina"
+            "label": "899 Mitre, BA,Argentina",
+            "shape": "Marker",
+            "name": "Unnamed Layer",
+            "category": "default"
         },
         "geometry": {
             "type": "Point",
-            "coordinates": [-62.07078784704209, -38.877889700608634]
-        }
+            "coordinates": [-62.071195, -38.877957]
+        },
+        "id": "b02f44ea-fc17-410b-b801-e999f8bc7fc5"
     }, {
         "type": "Feature",
         "properties": {
@@ -798,7 +806,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.08264589309693, -38.87905691690446]
-        }
+        },
+        "id": "4b2bb7af-bba5-4cc8-b036-829bf6358155"
     }, {
         "type": "Feature",
         "properties": {
@@ -807,7 +816,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.0844054222107, -38.87192386104824]
-        }
+        },
+        "id": "d2132def-d190-4755-9c0d-03961386017d"
     }, {
         "type": "Feature",
         "properties": {
@@ -816,7 +826,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.08489894866944, -38.85407973436778]
-        }
+        },
+        "id": "c3530093-61a2-40b2-878d-3d5f4397a3c0"
     }, {
         "type": "Feature",
         "properties": {
@@ -825,7 +836,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.20558494329453, -38.74763638519402]
-        }
+        },
+        "id": "98675825-fda7-4215-a462-c169b7306d0f"
     }, {
         "type": "Feature",
         "properties": {
@@ -834,7 +846,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.22815036773682, -38.72904549803397]
-        }
+        },
+        "id": "af932266-be24-4e5e-b0a1-605d3788acb8"
     }, {
         "type": "Feature",
         "properties": {
@@ -843,7 +856,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.244071960449226, -38.73902149359335]
-        }
+        },
+        "id": "96445f41-a950-4b76-97b4-cfa504c40799"
     }, {
         "type": "Feature",
         "properties": {
@@ -852,7 +866,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.27009743452073, -38.71865165692419]
-        }
+        },
+        "id": "eb461290-b47a-4526-b73a-1a2289471682"
     }, {
         "type": "Feature",
         "properties": {
@@ -861,7 +876,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.263472378253944, -38.70941792943378]
-        }
+        },
+        "id": "a6765733-2c04-476c-b274-eaf766ff7ea1"
     }, {
         "type": "Feature",
         "properties": {
@@ -870,7 +886,8 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.26488590240479, -38.70497434855928]
-        }
+        },
+        "id": "8e23f661-76c4-499a-b65c-adc3d1719eac"
     }, {
         "type": "Feature",
         "properties": {
@@ -879,6 +896,7 @@
         "geometry": {
             "type": "Point",
             "coordinates": [-62.26813673973084, -38.70092193043659]
-        }
+        },
+        "id": "8534ce78-90ab-4795-a629-bb90b8152871"
     }]
 }

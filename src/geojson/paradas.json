@@ -10,7 +10,7 @@
             }
         }
         , {
-            "nombre": "Uns - Av. Alem",
+            "nombre": "UNS - Av. Alem",
             "coords": {
             	"lng":-62.2704 ,
             	"lat":-38.7024}
@@ -637,7 +637,7 @@
             	"lng":-62.26263 ,
             	"lat":-38.70778}
         }, {
-            "nombre": "Uns - 12 de Octubre",
+            "nombre": "UNS - 12 de Octubre",
             "coords": {
             	"lng":-62.26731 ,
             	"lat":-38.70198}
