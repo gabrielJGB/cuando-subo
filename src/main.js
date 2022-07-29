@@ -1,31 +1,20 @@
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-}
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('service-worker.js');
+// }
 
 import  {getSegmentNumber} from './polygons.js'
 import {getDirections,getCurrentBuses,getBusArray,getBusMatrix,getNearestBusIndex} from './requests.js'
 import timetables from './geojson/horarios_invierno.json' assert {type: 'json'};
-import {writeMainContainer,writeSchedules} from './ui.js'
+import {writeMainContainer,writeSchedules,getSelectedDirection} from './ui.js'
 import {getSchedule} from './test.js'
-// const mainContainer = document.querySelector('.main-container')
-
-// loadingIcon.style.display = "none"
-
 
 export function update(lng, lat, direction) {
 
-    
-    
-    // mainContainer.textContent = ""
-    // loadingIcon.style.display = "none"//borrar    
     const loadingIcon = document.querySelector('.loading-icon')
     document.querySelector('.timetables').style.display = 'none'
     writeMainContainer(' ')
     
-
-    // loadingIcon.style.display = "none"  
-
-    // loadingIcon.style.display = "none"
+    // loadingIcon.style.display = "none" //borrar
     loadingIcon.style.display = "block"
     getCurrentBuses().then(response => {
         let busArray = getBusArray(response, direction)
@@ -90,6 +79,15 @@ function displayData(distance, minutes, nearestBus) {
     }
     
 
+    let direction 
+    if(getSelectedDirection()){
+        direction = 'Punta Alta &#8594; Bahía Blanca'
+    }else{
+        direction = 'Bahía Blanca &#8594; Punta Alta'
+    }
+
+    let list =  document.querySelector('#list')
+    let location_name = list.options[list.selectedIndex].text
     let time = new Date(nearestBus.dt_tracker)
     let time1 = new Date(time.setHours(time.getHours()-3))
     let time_hs = String(time1.getHours()).padStart(2,0)
@@ -102,13 +100,16 @@ function displayData(distance, minutes, nearestBus) {
     <div><span class="minutes">${m}${minutes}</span> minuto${s}</div>
     <br>
     <div class="text2">
-
-    <div>Interno: <span class="bus-id">${nearestBus.interno}</span> </div>
-    <div>Distancia: <span class="distance">${distance}</span> km</div> 
-    <div>Actualizado a las: <span class="update-time">${time_hs}:${time_min}:${time_sec}</span></div>
-    
+        <div>Interno: <span class="bus-id">${nearestBus.interno}</span> </div>
+        <div>Distancia: <span class="distance">${distance}</span> km</div> 
+        <div>Actualizado a las: <span class="update-time">${time_hs}:${time_min}:${time_sec}</span></div>
+    </div>
+    <div class="info">
+        <div class="loc-name">${location_name}</div>
+        <div class="direction">${direction}</div>
     </div>
     `
+
 
     writeMainContainer(text)
 }

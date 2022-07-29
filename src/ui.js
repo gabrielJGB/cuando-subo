@@ -382,6 +382,11 @@ function loadLocation(){
     let lat = location_coords.lat
     let direction = this.parentNode.parentNode.dataset.direction
     
+
+    document.querySelector('#list').value = JSON.stringify({"lng":lng,"lat":lat})
+    document.querySelector(`#${direction}`).checked = true
+    
+    setMarker(lng,lat)
     update(lng,lat,direction)
     hidePanel()
 }
