@@ -1,6 +1,6 @@
-// if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.register('service-worker.js');
-// }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+}
 
 import  {getSegmentNumber} from './polygons.js'
 import {getDirections,getCurrentBuses,getBusArray,getBusMatrix,getNearestBusIndex} from './requests.js'
