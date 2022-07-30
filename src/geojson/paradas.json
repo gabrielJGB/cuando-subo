@@ -5,8 +5,8 @@
         {
             "nombre": "Parque de Mayo",
             "coords": {
-            	"lng":-62.26874,
-            	"lat":-38.7001
+            	"lng":-62.2691,
+            	"lat": -38.7004
             }
         }
         , {
@@ -312,8 +312,8 @@
         }, {
             "nombre": "Terminal Punta Alta",
             "coords": {
-            	"lng":-62.07133 ,
-            	"lat":-38.87674}
+            	"lng": -62.0716,
+            	"lat":-38.8768}
         }
     ],
 
@@ -324,8 +324,8 @@
         {
             "nombre": "Terminal Punta Alta",
             "coords": {
-            	"lng":-62.07133 ,
-            	"lat":-38.87674}
+            	"lng": -62.0716 ,
+            	"lat": -38.8768}
         }, {
             "nombre": "Mitre 440",
             "coords": {
@@ -644,8 +644,9 @@
         }, {
             "nombre": "Parque de Mayo",
             "coords": {
-            	"lng":-62.26864 ,
-            	"lat":-38.70031}
+                "lng":-62.2691,
+                "lat": -38.7004
+            }
         }
 
 

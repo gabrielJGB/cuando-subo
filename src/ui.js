@@ -387,6 +387,7 @@ function loadLocation(){
     document.querySelector(`#${direction}`).checked = true
     
     setMarker(lng,lat)
+    setLocalStorage(lng,lat)
     update(lng,lat,direction)
     hidePanel()
 }

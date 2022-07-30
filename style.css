@@ -396,4 +396,9 @@ body::-webkit-scrollbar {
   .reload-button span{
   	font-size: 23px;
     font-weight: 100;
+    font-weight: bold;
+  }
+
+  .update-delay{
+  	color: #ff5e5e;
   }

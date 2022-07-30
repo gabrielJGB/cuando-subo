@@ -38,7 +38,7 @@ export function update(lng, lat, direction) {
                     getDirections(lng, lat, bus_lng, bus_lat, segmentNumberBus, segmentNumberUser, direction).then((data) => {
                         
                         if(data != null){
-
+                                console.log('displayData')
                             displayData(data.distance, data.minutes, nearestBus)
                         }else{
                             loadingIcon.style.display = "none"
@@ -80,7 +80,7 @@ function displayData(distance, minutes, nearestBus) {
     
 
     let direction 
-    if(getSelectedDirection()){
+    if(getSelectedDirection()=="vuelta"){
         direction = 'Punta Alta &#8594; Bahía Blanca'
     }else{
         direction = 'Bahía Blanca &#8594; Punta Alta'
@@ -94,6 +94,12 @@ function displayData(distance, minutes, nearestBus) {
     let time_min = String(time1.getMinutes()).padStart(2,0)
     let time_sec = String(time1.getSeconds()).padStart(2,0)
 
+
+    let currentTime = new Date()
+    let busTime = time
+    busTime = busTime.setMinutes(busTime.getMinutes()+3)
+    let delay = currentTime > busTime
+
     let text = `
 
     <div class="text1">El colectvo llegará a la ubicación seleccionada en:</div>
@@ -102,7 +108,7 @@ function displayData(distance, minutes, nearestBus) {
     <div class="text2">
         <div>Interno: <span class="bus-id">${nearestBus.interno}</span> </div>
         <div>Distancia: <span class="distance">${distance}</span> km</div> 
-        <div>Actualizado a las: <span class="update-time">${time_hs}:${time_min}:${time_sec}</span></div>
+        <div>Actualizado a las: <span class="update-time ${delay?"update-delay":""}"}>${time_hs}:${time_min}:${time_sec}</span></div>
     </div>
     <div class="info">
         <div class="loc-name">${location_name}</div>
