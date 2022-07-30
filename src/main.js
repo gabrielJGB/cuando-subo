@@ -99,11 +99,19 @@ function displayData(distance, minutes, nearestBus) {
     let busTime = time
     busTime = busTime.setMinutes(busTime.getMinutes()+3)
     let delay = currentTime > busTime
+    let eta_s = currentTime.setMinutes(currentTime.getMinutes()+minutes)
+    let etaHours = String(new Date(eta_s).getHours()).padStart(2,0)
+    let etaMinutes = String(new Date(eta_s).getMinutes()).padStart(2,0)
+    let eta = etaHours + ':' + etaMinutes
+    
 
     let text = `
 
     <div class="text1">El colectvo llegará a la ubicación seleccionada en:</div>
-    <div><span class="minutes">${m}${minutes}</span> minuto${s}</div>
+    <div>
+        <span class="minutes">${m}${minutes}</span> minuto${s}
+        <div class="eta">Estimado: <span>${eta}</span></div>
+    </div>
     <br>
     <div class="text2">
         <div>Interno: <span class="bus-id">${nearestBus.interno}</span> </div>

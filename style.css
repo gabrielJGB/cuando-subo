@@ -402,3 +402,8 @@ body::-webkit-scrollbar {
   .update-delay{
   	color: #ff5e5e;
   }
+
+  .eta{
+  	color: #959595;
+    font-size: 17px;
+  }
