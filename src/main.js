@@ -119,8 +119,8 @@ function displayData(distance, minutes, nearestBus) {
         <div>Actualizado a las: <span class="update-time ${delay?"update-delay":""}"}>${time_hs}:${time_min}:${time_sec}</span></div>
     </div>
     <div class="info">
-        <div class="loc-name">${location_name}</div>
         <div class="direction">${direction}</div>
+        <div class="loc-name">${location_name}</div>
     </div>
     `
 
