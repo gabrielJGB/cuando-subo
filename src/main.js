@@ -1,6 +1,6 @@
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js');
-}
+// if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('service-worker.js');
+// }
 
 import  {getSegmentNumber} from './polygons.js'
 import {getDirections,getCurrentBuses,getBusArray,getBusMatrix,getNearestBusIndex} from './requests.js'
@@ -38,7 +38,7 @@ export function update(lng, lat, direction) {
                     getDirections(lng, lat, bus_lng, bus_lat, segmentNumberBus, segmentNumberUser, direction).then((data) => {
                         
                         if(data != null){
-                                console.log('displayData')
+                                
                             displayData(data.distance, data.minutes, nearestBus)
                         }else{
                             loadingIcon.style.display = "none"

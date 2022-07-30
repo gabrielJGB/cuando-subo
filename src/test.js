@@ -5,9 +5,9 @@ import timetables from './geojson/horarios.json' assert {type: 'json'};
 export function getSchedule(direction){
     let nextDeparture = []
     let previousDeparture = []
-    let currentTime = new Date().setMinutes(new Date().getMinutes())
+    let currentTime = new Date()
     let horarios
-    
+
     if(direction == "ida"){
             horarios = timetables.horarios_ida
     }else{
@@ -20,7 +20,7 @@ export function getSchedule(direction){
         nextBus.setMinutes(table.minutos)
         nextBus.setSeconds('00')
     
-        if(nextBus.getHours()<5&&nextBus.getHours()>0){
+        if(nextBus.getHours()<5){
              nextBus.setDate(nextBus.getDate()+1)
         }
         if(nextBus>currentTime){
