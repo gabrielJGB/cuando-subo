@@ -1,4 +1,4 @@
-import timetables from './geojson/horarios.json' assert {type: 'json'};
+import timetables from './geojson/horarios_invierno.json' assert {type: 'json'};
 
 
 
@@ -7,6 +7,7 @@ export function getSchedule(direction){
     let previousDeparture = []
     let currentTime = new Date()
     let horarios
+
 
     if(direction == "ida"){
             horarios = timetables.horarios_ida
@@ -26,7 +27,7 @@ export function getSchedule(direction){
         if(nextBus>currentTime){
              let previousIndex = horarios.indexOf(table) -1
             if(previousIndex == -1){
-                previousIndex = horarios.length -1
+                previousIndex = horarios.length -2
             }
             let previous_d = horarios[previousIndex].horas + ':' + horarios[previousIndex].minutos
             previousDeparture.push(previous_d)
