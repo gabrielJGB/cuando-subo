@@ -27,14 +27,25 @@ background-color: #1e1e1e;
 box-shadow: 0 0 10px black;
 }
 .reload-button{
-	background-color: #1e1e1e;
+	/* background-color: #1e1e1e;
     border: 0;
     color: #858585; 
     font-size: 32px;
     margin-right: 5px;
     padding: 7px 10px;
     cursor: pointer;
+    font-weight: bolder; */
+        background-color: #1e1e1e;
+    border: 0;
+    color: #858585;
+    font-size: 32px;
+    margin-right: 10px;
+    /* padding: 7px 10px; */
+    cursor: pointer;
     font-weight: bolder;
+    border: solid 2px #605f5f;
+    border-radius: 3px;
+    padding: 3px 6px;
     
 }
 .container{
