@@ -88,18 +88,23 @@ function displayData(distance, minutes, nearestBus) {
 
     let list =  document.querySelector('#list')
     let location_name = list.options[list.selectedIndex].text
+
     let time = new Date(nearestBus.dt_tracker)
     let time1 = new Date(time.setHours(time.getHours()-3))
+    let eta_time = time1
+
     let time_hs = String(time1.getHours()).padStart(2,0)
     let time_min = String(time1.getMinutes()).padStart(2,0)
     let time_sec = String(time1.getSeconds()).padStart(2,0)
 
+    let busTime = time
+    busTime = busTime.setMinutes(busTime.getMinutes()+3) 
 
     let currentTime = new Date()
-    let busTime = time
-    busTime = busTime.setMinutes(busTime.getMinutes()+3)
     let delay = currentTime > busTime
-    let eta_s = currentTime.setMinutes(currentTime.getMinutes()+minutes)
+
+
+    let eta_s = eta_time.setMinutes(eta_time.getMinutes()+minutes)
     let etaHours = String(new Date(eta_s).getHours()).padStart(2,0)
     let etaMinutes = String(new Date(eta_s).getMinutes()).padStart(2,0)
     let eta = etaHours + ':' + etaMinutes
