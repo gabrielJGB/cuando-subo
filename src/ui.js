@@ -52,12 +52,19 @@ export function getSelectedDirection() {
 }
 
 
+
+
 function toggleSettingsPanel() {
 
     if (isVisible) {
         hidePanel()
+       
+
+        
     } else {
         showPanel()
+
+
     }
 }
 
@@ -232,8 +239,33 @@ function swipeMenu(e) {
     }
 }
 
+// window.history.pushState({ noBackExitsApp: false}, '')
+// window.history.pushState({ noBackExitsApp: true }, '')
+
+// window.addEventListener('load', function() {
+//   window.history.pushState({ noBackExitsApp: true }, '')
+// })
+
+
+window.addEventListener('load', function() {
+   window.history.pushState({ noBackExitsApp: true }, '')
+ })
+
+ window.addEventListener('popstate', function(event) {
+   if (event.state.noBackExitsApp) {
+    hidePanel()
+     window.history.pushState({ noBackExitsApp: true }, '')
+   }else{
+    window.history.back()
+   }
+ })
+
+
+// window.history.pushState(null, null, window.location.href);
 
 function hidePanel() {
+    // window.history.pushState(null, null, window.location.href);
+    window.history.pushState({ noBackExitsApp: false}, '')
     settingsPanel.style.left = "-100%";
     isVisible = false;
 
@@ -251,7 +283,8 @@ function hidePanel() {
     }
 }
 
-function showPanel(vaue) {
+function showPanel() {
+    window.history.pushState({ noBackExitsAp: false }, '')
     settingsPanel.style.left = "0%"
     isVisible = true
 }
@@ -569,19 +602,8 @@ function drawRoute(){
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// window.addEventListener('load', function() {
+//   window.history.pushState({ noBackExitsApp: true }, '')
+//   console.log('pushed')
+// })
 

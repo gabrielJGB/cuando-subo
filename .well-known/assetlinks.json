@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "app.vercel.cuandosubo.twa",
+                     "sha256_cert_fingerprints": ["D1:E5:C6:A0:9E:93:A0:DC:17:5E:A0:34:FB:C8:DA:65:E5:B7:AB:68:35:C7:0B:85:62:A2:AA:33:9B:09:9D:C7"] }
+      }
+]
