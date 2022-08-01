@@ -108,16 +108,19 @@ export async function getDirections(user_lng, user_lat, bus_lng, bus_lat, wayPoi
 export async function getCurrentBuses() {
     //  '&rand=' + Math.random()
     let url = 'https://www.gpsbahia.com.ar/frontend/track_data/3.json'
-    const response = await fetch('https://corsproxy.io/?'+encodeURIComponent(url))
+
+    const response = await fetch('https://api.codetabs.com/v1/proxy?quest='+url)
     const parsed = await response.json()
     
-    return parsed
+    
+    return parsed.data
     
 }
 
 export function getBusArray(response, direction) {
     let busArray = []
-    response.data.forEach(obj => {
+
+    response.forEach(obj => {
 
         if (obj.direccion == direction && !obj.name.includes('CARGO') && !obj.name.includes('BOXER') && obj.interno != '116'&& obj.interno != '110') {
             busArray.push(obj)
