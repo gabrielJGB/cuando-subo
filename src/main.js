@@ -41,43 +41,38 @@ export function update(lng, lat, direction) {
                                 
                             displayData(data.distance, data.minutes, nearestBus)
                         }else{
-                            loadingIcon.style.display = "none"
-                            writeMainContainer("No hay colectivos en camino.<br>Intentá de nuevo en unos minutos.")
-                            writeSchedules(direction,getSchedule(direction))
-
+                            noData(direction)
                         }
                     })
                 }
                 else{
-                    loadingIcon.style.display = "none"
-                    writeMainContainer("No hay colectivos en camino.<br>Intentá de nuevo en unos minutos.")
-                    writeSchedules(direction,getSchedule(direction))
-                }
-                
-
+                    noData(direction)
+                }           
             })
-
         } 
         else {
-            loadingIcon.style.display = "none"
-            writeMainContainer("No hay colectivos en camino.<br>Intentá de nuevo en unos minutos.")
-            writeSchedules(direction,getSchedule(direction))
+
+            noData(direction)
         }
     })
 }
 
+function noData(direction){
+    console.log('4')
+    const loadingIcon = document.querySelector('.loading-icon')
+    loadingIcon.style.display = "none"
+    writeMainContainer("No hay colectivos en camino.<br>Intentá de nuevo en unos minutos.")
+    writeSchedules(direction,getSchedule(direction))
+}
+
+
+
 
 function displayData(distance, minutes, nearestBus) {
-    let s = ''
-    if(minutes!=1){
-        s = 's'
-    }
-
-    let m = ' '
-    if(distance <= 0.2){
-        m = '~'
-    }
     
+    let one_minute = minutes == 1
+    let close_distance = distance <= 0.2
+        
 
     let direction 
     if(getSelectedDirection()=="vuelta"){
@@ -114,7 +109,7 @@ function displayData(distance, minutes, nearestBus) {
 
     <div class="text1">El colectvo llegará a la ubicación seleccionada en:</div>
     <div>
-        <span class="minutes">${m}${minutes}</span> minuto${s}
+        <span class="minutes">${close_distance?"~":""}${minutes}</span> ${one_minute?" minuto":" minutos"}
         <div class="eta">Estimado: <span>${eta}</span></div>
     </div>
     <br>
@@ -132,7 +127,6 @@ function displayData(distance, minutes, nearestBus) {
 
     writeMainContainer(text)
 }
-
 
 
 
