@@ -4,9 +4,10 @@ if ('serviceWorker' in navigator) {
 
 import  {getSegmentNumber} from './polygons.js'
 import {getDirections,getCurrentBuses,getBusArray,getBusMatrix,getNearestBusIndex} from './requests.js'
-import timetables from './geojson/horarios_invierno.json' assert {type: 'json'};
 import {writeMainContainer,writeSchedules,getSelectedDirection} from './ui.js'
 import {getSchedule} from './test.js'
+
+
 
 export function update(lng, lat, direction) {
 
@@ -43,6 +44,9 @@ export function update(lng, lat, direction) {
                         }else{
                             noData(direction)
                         }
+                    }).catch(error=>{
+                        console.error(error)
+                        writeMainContainer('Ha ocurrido un error')
                     })
                 }
                 else{
@@ -54,11 +58,14 @@ export function update(lng, lat, direction) {
 
             noData(direction)
         }
+    }).catch(error=>{
+        console.error(error)
+        writeMainContainer('Ha ocurrido un error')
     })
 }
 
 function noData(direction){
-    console.log('4')
+    
     const loadingIcon = document.querySelector('.loading-icon')
     loadingIcon.style.display = "none"
     writeMainContainer("No hay colectivos en camino.<br>Intentá de nuevo en unos minutos.")

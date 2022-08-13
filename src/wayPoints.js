@@ -1,5 +1,5 @@
-import ruta_ida from './geojson/gj-BB-PA-1.json'assert {type: 'json'};
-import ruta_vuelta from './geojson/gj-PA-BB.json'assert {type: 'json'};
+import ruta_ida from './json/gj-BB-PA-1.json'assert {type: 'json'};
+import ruta_vuelta from './json/gj-PA-BB.json'assert {type: 'json'};
 
 
 ruta_ida.features.shift()

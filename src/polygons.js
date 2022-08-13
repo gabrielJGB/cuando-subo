@@ -1,6 +1,6 @@
 
-import polygons_ida from './geojson/polygons_ida.json'assert {type: 'json'};
-import polygons_vuelta from './geojson/polygons_vuelta.json' assert { type: 'json' };
+import polygons_ida from './json/polygons_ida.json'assert {type: 'json'};
+import polygons_vuelta from './json/polygons_vuelta.json' assert { type: 'json' };
 
 let arrayPolygonsIda = polygons_ida.features.map(obj =>
     obj.geometry.coordinates[0]

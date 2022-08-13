@@ -118,7 +118,7 @@ function handleSelectedOption() {
 
 }
 
-import file from './geojson/paradas.json'assert {type: 'json'};
+import file from './json/paradas.json'assert {type: 'json'};
 
 function fillList(direction1) {
 

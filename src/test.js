@@ -1,13 +1,23 @@
-import timetables from './geojson/horarios_invierno.json' assert {type: 'json'};
-
-
+import timetables_normal from './json/horarios.json' assert {type: 'json'};
+import timetables_sun from './json/horarios_domingo.json' assert {type: 'json'};
+import timetables_sat from './json/horarios_sabado.json' assert {type: 'json'};
 
 export function getSchedule(direction){
     let nextDeparture = []
     let previousDeparture = []
     let currentTime = new Date()
     let horarios
+    let timetables
 
+
+    if(currentTime.getDay() == 6  || (currentTime.getDay() == 0 && currentTime.getHours() >= 0)){
+
+        timetables = timetables_sat
+    }else if(currentTime.getDay() == 0){
+        timetables = timetables_sun
+    }else{
+        timetables = timetables_normal
+    }
 
     if(direction == "ida"){
             horarios = timetables.horarios_ida
